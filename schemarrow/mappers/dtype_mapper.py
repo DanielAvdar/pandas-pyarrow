@@ -11,11 +11,15 @@ mapper_dict_numeric: Dict[str, str] = {
 }
 mapper_dict_dt: Dict[str, str] = {
     "datetime64[ns]": "timestamp[ns][pyarrow]",
-    "timedelta64[ns]": "time64[ns][pyarrow]",
+    "datetime64[ms]": "timestamp[ms][pyarrow]",
+    "datetime64[us]": "timestamp[us][pyarrow]",
+    "timedelta64[ns]": "duration[ns][pyarrow]",
+    "timedelta64[ms]": "duration[ms][pyarrow]",
+    "timedelta64[us]": "duration[us][pyarrow]",
     "datetime64": "timestamp[ns][pyarrow]",
-    "timedelta64": "time64[pyarrow]",
+    "timedelta64": "duration[us][pyarrow]",
     "date": "date32[pyarrow]",
-    "time": "time64[pyarrow]",
+    "time": "timestamp[ns][pyarrow]",
     "timestamp": "timestamp[ns][pyarrow]",
 }
 mapper_dict_object: Dict[str, str] = {
@@ -23,6 +27,5 @@ mapper_dict_object: Dict[str, str] = {
     "O": "string[pyarrow]",
     "category": "string[pyarrow]",
     "string": "string[pyarrow]",
-    "binary": "binary[pyarrow]",
     "bool": "bool[pyarrow]",
 }
