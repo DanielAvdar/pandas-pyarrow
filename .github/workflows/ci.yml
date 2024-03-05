@@ -32,7 +32,7 @@ jobs:
           path: ./.venv
           key: venv-${{ hashFiles('poetry.lock') }}
       - name: Install the project dependencies
-        run: poetry install --only-root
+        run: poetry install --sync
       - name: Unit Tests with Coverage
         run: poetry run pytest --cov=schemarrow --cov-report=term-missing --cov-report=html
       - name: Save coverage report as HTML
