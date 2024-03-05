@@ -31,7 +31,8 @@ jobs:
         with:
           path: ./.venv
           key: venv-${{ hashFiles('poetry.lock') }}
-
+      - name: Poetry upgrade pip
+        run: poetry run pip install --upgrade pip
       - name: Install the project dependencies
         run: poetry install
       - name: Unit Tests with Coverage
