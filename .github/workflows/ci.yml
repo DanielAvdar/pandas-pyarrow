@@ -10,9 +10,6 @@ jobs:
       matrix:
         os: [ ubuntu-latest, macos-latest, windows-latest ]
         python-version: [ '3.8', '3.9', '3.10', '3.11', '3.12' ]
-        exclude:
-          - os: macos-latest
-            python-version: '3.8'
     steps:
       - uses: actions/checkout@v4
 
@@ -36,11 +33,9 @@ jobs:
           key: venv-${{ hashFiles('poetry.lock') }}
 
       - name: Install the project dependencies
-        run: poetry install -E gcp
-
+        run: poetry install
       - name: Unit Tests with Coverage
         run: poetry run pytest --cov=schemarrow --cov-report=term-missing --cov-report=html
-
       - name: Save coverage report as HTML
         if: matrix.python-version == '3.11'
         uses: actions/upload-artifact@v4
@@ -48,5 +43,9 @@ jobs:
           name: coverage-report-${{ matrix.os }}
           path: ./htmlcov
 
+      - name: Install with integrations
+        run: poetry install -E db-dtypes
+      - name: All tests
+        run: poetry run pytest
 
     continue-on-error: true
