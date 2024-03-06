@@ -5,8 +5,8 @@
 # SchemArrow
 [![PyPI version](https://img.shields.io/pypi/v/SchemArrow)](https://img.shields.io/pypi/v/SchemArrow)
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/SchemArrow)](https://pypi.org/project/SchemArrow/)
-[![Tests](https://github.com/ohadmata/SchemArrow/actions/workflows/main.yml/badge.svg)](https://github.com/ohadmata/SchemArrow/actions/workflows/main.yml)
-[![Code Checks](https://github.com/ohadmata/SchemArrow/actions/workflows/code-checks.yml/badge.svg)](https://github.com/ohadmata/SchemArrow/actions/workflows/code-checks.yml)
+[![Tests](https://github.com/DanielAvdar/SchemArrow/actions/workflows/main.yml/badge.svg)](https://github.com/DanielAvdar/SchemArrow/actions/workflows/main.yml)
+[![Code Checks](https://github.com/DanielAvdar/SchemArrow/actions/workflows/code-checks.yml/badge.svg)](https://github.com/DanielAvdar/SchemArrow/actions/workflows/code-checks.yml)
 [![License](https://img.shields.io/:license-MIT-blue.svg)](https://opensource.org/license/mit/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/SchemArrow)](https://pypi.org/project/SchemArrow/)
 ![OS](https://img.shields.io/badge/ubuntu-blue?logo=ubuntu)
