@@ -4,7 +4,6 @@
 
 # SchemArrow
 [![PyPI version](https://img.shields.io/pypi/v/SchemArrow)](https://img.shields.io/pypi/v/SchemArrow)
-[![PyPI - Downloads](https://img.shields.io/pypi/dm/SchemArrow)](https://pypi.org/project/SchemArrow/)
 [![Tests](https://github.com/DanielAvdar/SchemArrow/actions/workflows/ci.yml/badge.svg)](https://github.com/DanielAvdar/SchemArrow/actions/workflows/ci.yml)
 [![Code Checks](https://github.com/DanielAvdar/SchemArrow/actions/workflows/code-checks.yml/badge.svg)](https://github.com/DanielAvdar/SchemArrow/actions/workflows/code-checks.yml)
 [![License](https://img.shields.io/:license-MIT-blue.svg)](https://opensource.org/license/mit/)
@@ -13,7 +12,7 @@
 ![OS](https://img.shields.io/badge/win-blue?logo=windows)
 ![OS](https://img.shields.io/badge/mac-blue?logo=apple)
 
-`SchemArrow` simplifies the conversion between pandas and Arrow DataFrames, allowing you to seamlessly switch back and forth.
+`SchemArrow` simplifies the conversion between pandas and Arrow DataFrames, allowing seamlessly switch to pyarrow pandas backend.
 **Get started:**
 ## Get started:
 ### Installation

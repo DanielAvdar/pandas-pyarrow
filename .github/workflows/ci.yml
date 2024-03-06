@@ -1,6 +1,10 @@
 name: PR tests
 on:
   pull_request:
+    paths:
+      - 'schemarrow/**'
+      - 'tests/**'
+      - '.github/workflows/ci.yml'
   workflow_dispatch:
 
 jobs:
