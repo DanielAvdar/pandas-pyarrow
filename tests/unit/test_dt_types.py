@@ -26,7 +26,7 @@ def test_dt_types(df_data, expected_dtype):
     sa = SchemArrow()
     adf = sa(df_data)
 
-    assert adf.dtypes[0] == expected_dtype
+    assert list(adf.dtypes)[0] == expected_dtype
 
 
 @Parametrization.case(
@@ -50,7 +50,7 @@ def test_dt_tz_types(data, expected_dtype):
     sa = SchemArrow()
     adf = sa(df_data)
 
-    assert adf.dtypes[0] == expected_dtype
+    assert list(adf.dtypes)[0] == expected_dtype
 
 
 @Parametrization.autodetect_parameters()
@@ -93,4 +93,4 @@ def test_timedelta_types(df_data, expected_dtype):
     sa = SchemArrow()
     adf = sa(df_data)
 
-    assert adf.dtypes[0] == expected_dtype
+    assert list(adf.dtypes)[0] == expected_dtype

@@ -29,4 +29,4 @@ def test_db_general_dtypes(df_data, expected_dtype):
     sa = SchemArrow()
     adf = sa(df_data)
 
-    assert adf.dtypes[0] == expected_dtype
+    assert list(adf.dtypes)[0] == expected_dtype

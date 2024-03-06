@@ -47,4 +47,4 @@ def test_numeric_types(df_data, expected_dtype):
     sa = SchemArrow()
     adf = sa(df_data)
 
-    assert adf.dtypes[0] == expected_dtype
+    assert list(adf.dtypes)[0] == expected_dtype
