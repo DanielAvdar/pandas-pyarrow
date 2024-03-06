@@ -15,6 +15,7 @@ def dtypes_st(draw) -> st.SearchStrategy[Any]:
             str,
             "datetime64[ns]",
             "timedelta64[ns]",
+            "timedelta64[ms]",
             "int8",
             "int16",
             "int32",
