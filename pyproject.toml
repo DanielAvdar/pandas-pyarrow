@@ -28,6 +28,7 @@ pytest-parametrization = "^2022"
 black = "*"
 flake8 = "*"
 isort = "*"
+types-pytz = "*"
 
 [tool.poetry.extras]
 db-dtypes = ['db-dtypes']
