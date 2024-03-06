@@ -25,6 +25,7 @@ pip install schemarrow
 
 ```python
 import pandas as pd
+
 from schemarrow import SchemArrow
 
 # Create a pandas DataFrame
