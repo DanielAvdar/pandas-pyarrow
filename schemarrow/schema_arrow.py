@@ -1,4 +1,4 @@
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 import pandas as pd
 
@@ -7,15 +7,12 @@ from schemarrow.mappers import all_mapper_dicts
 
 class SchemArrow:
     def __init__(
-        self,
-        parquet_compatible: bool = False,
-        additional_mapper_dicts: Dict[str, str] = None,
+            self,
+            parquet_compatible: Optional[bool] = False,
+            custom_mapper: Optional[Dict[str, str]] = None,
     ):
         self.parquet_compatible = parquet_compatible
-        if not additional_mapper_dicts:
-            self.additional_mapper_dicts = {}
-        else:
-            self.additional_mapper_dicts = additional_mapper_dicts
+        self.additional_mapper_dicts = custom_mapper or {}
 
     def __call__(self, df: pd.DataFrame) -> pd.DataFrame:
         dtype_names: List[str] = df.dtypes.astype(str).tolist()
