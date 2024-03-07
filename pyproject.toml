@@ -1,14 +1,17 @@
 [tool.poetry]
 name = "schemarrow"
 version = "0.1.0"
-description = "right out of the box mljar pipeline."
+description = "A library for switching pandas backend to pyarrow"
 authors = ["DanielAvdar <66269169+DanielAvdar@users.noreply.github.com>"]
 license = "MIT"
 readme = "README.md"
-packages = [
+homepage = "https://github.com/DanielAvdar/SchemArrow"
+repository = "https://github.com/DanielAvdar/SchemArrow"
+documentation = "https://github.com/DanielAvdar/SchemArrow"
+keywords = ["pandas", "pyarrow", "arrow", "schemarrow", "pandas-pyarrow", "pandas-arrow", "pandas-backend", "data-processing", "data-conversion", "backend-switch", "high-performance", "datasets", "big-data", "data-serialization", "data-analysis", "data-science", "machine-learning", "AI", "python-library", "data-backend", "performance-optimization", "memory-efficient", "python"]
+    packages = [
     { include = "schemarrow", from = "." },
 ]
-
 [tool.poetry.dependencies]
 python = ">=3.9,<3.13"
 pandas = ">=2"
