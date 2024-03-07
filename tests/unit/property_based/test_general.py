@@ -1,11 +1,11 @@
 import hypothesis as hp
 
 from schemarrow.schema_arrow import SchemArrow
-from tests.pb_sts import df_st
+from tests.unit.property_based.pb_sts import df_st
 
 
 @hp.given(df=df_st())
-def test_dtypes_st(df):
+def test_dtypes_hp(df):
     sa = SchemArrow()
     adf = sa(df)
 

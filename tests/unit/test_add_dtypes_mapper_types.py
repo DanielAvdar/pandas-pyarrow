@@ -24,7 +24,7 @@ from schemarrow.schema_arrow import SchemArrow
     additional_mapper_dicts={"datetime64[ms]": "timestamp[ms,UTC][pyarrow]"},
 )
 def test_add_dtypes_types(df_data, expected_dtype, additional_mapper_dicts):
-    sa = SchemArrow(additional_mapper_dicts=additional_mapper_dicts)
+    sa = SchemArrow(custom_mapper=additional_mapper_dicts)
     adf = sa(df_data)
 
     assert list(adf.dtypes)[0] == expected_dtype
