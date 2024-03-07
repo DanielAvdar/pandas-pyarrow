@@ -15,7 +15,7 @@ keywords = ["pandas", "pyarrow", "arrow", "schemarrow", "pandas-pyarrow", "panda
 [tool.poetry.dependencies]
 python = ">=3.9,<3.13"
 pandas = ">=2"
-pyarrow = ">=7.0.0"
+pyarrow = ">=7.0.0, <=15.0.0"
 db-dtypes = { extras = ["db-dtypes"], version = ">=1", optional = true }
 
 [tool.poetry.dev-dependencies]
