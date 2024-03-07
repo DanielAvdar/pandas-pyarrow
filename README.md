@@ -79,3 +79,11 @@ df_pa: pd.DataFrame = arrow_schema(df)
 
 print(df_pa.dtypes)
 ```
+
+## Purposes
+- Simplify the conversion between pandas pyarrow and numpy backends.
+- Allow seamlessly switch to pyarrow pandas backend.
+- dtype standardization for db-dtypes used by bigquery python sdk.
+## Additional Information
+When converting from higher precision numerical dtypes (like float64) to
+lower precision (like float32), data precision might be compromised.
