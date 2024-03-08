@@ -5,6 +5,7 @@ from tests.unit.property_based.pb_sts import df_st
 
 
 @hp.given(df=df_st())
+@hp.settings(max_examples=500)
 def test_dtypes_hp(df):
     sa = SchemArrow()
     adf = sa(df)
