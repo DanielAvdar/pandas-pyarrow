@@ -1,34 +1,47 @@
-from typing import Dict, List
+from typing import Dict, List, Optional
+
+from schemarrow.mappers import create_mapper
 
 import pandas as pd
 
-from schemarrow.mappers import all_mapper_dicts
-
 
 class SchemArrow:
+    """
+    SchemArrow manages the conversion of Pandas DataFrame data types to Arrow data types.
+
+    :param parquet_compatible: if True, columns names will be converted to parquet compatible names. Default is False.
+    **disclaimer**: not yet implemented
+    :param custom_mapper: dictionary with key as the source data type and value as the target data type.
+    will override default mapping
+    :param default_to_source: Optional string specifying the default data type to use if no mapping is found for a
+     specific data type. Default is "string[pyarrow]".
+
+    Methods:
+    - __call__(self, df: pd.DataFrame) -> pd.DataFrame: Converts the data types of the given Pandas DataFrame
+     and returns the converted DataFrame.
+    """
+
     def __init__(
         self,
-        parquet_compatible: bool = False,
-        additional_mapper_dicts: Dict[str, str] = None,
+        parquet_compatible: Optional[bool] = False,
+        custom_mapper: Optional[Dict[str, str]] = None,
+        default_to_source: Optional[str] = "string[pyarrow]",
     ):
         self.parquet_compatible = parquet_compatible
-        if not additional_mapper_dicts:
-            self.additional_mapper_dicts = {}
-        else:
-            self.additional_mapper_dicts = additional_mapper_dicts
+        self.additional_mapper_dicts = custom_mapper or {}
+        self.defaults_dtype = default_to_source
+        self._mapper = create_mapper() | self.additional_mapper_dicts
 
     def __call__(self, df: pd.DataFrame) -> pd.DataFrame:
         dtype_names: List[str] = df.dtypes.astype(str).tolist()
         target_dtype_names = self._map_dtype_names(dtype_names)
-
         adf = df.astype(dict(zip(df.columns, target_dtype_names)))
-
         return adf
 
+    def _target_dtype_name(self, dtype_name: str) -> str:
+        type_mapper = self._mapper
+        defaults_dtype = self.defaults_dtype or dtype_name
+        return type_mapper.get(dtype_name, defaults_dtype)
+
     def _map_dtype_names(self, dtype_names: List[str]) -> List[str]:
-        type_mapper = all_mapper_dicts | self.additional_mapper_dicts
-        target_dtype_names = []
-        for dtype_name in dtype_names:
-            target_dtype_name = type_mapper[dtype_name]
-            target_dtype_names.append(target_dtype_name)
-        return target_dtype_names
+        return [self._target_dtype_name(dtype_name) for dtype_name in dtype_names]

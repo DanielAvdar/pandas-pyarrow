@@ -1,7 +1,7 @@
+from schemarrow.schema_arrow import SchemArrow
+
 import pandas as pd
 from parametrization import Parametrization
-
-from schemarrow.schema_arrow import SchemArrow
 
 
 @Parametrization.autodetect_parameters()
@@ -29,4 +29,4 @@ def test_db_general_dtypes(df_data, expected_dtype):
     sa = SchemArrow()
     adf = sa(df_data)
 
-    assert adf.dtypes[0] == expected_dtype
+    assert list(adf.dtypes)[0] == expected_dtype

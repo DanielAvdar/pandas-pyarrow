@@ -3,17 +3,19 @@
 
 
 # SchemArrow
-[![PyPI version](https://img.shields.io/pypi/v/SchemArrow)](https://img.shields.io/pypi/v/SchemArrow)
-[![Tests](https://github.com/DanielAvdar/SchemArrow/actions/workflows/ci.yml/badge.svg)](https://github.com/DanielAvdar/SchemArrow/actions/workflows/ci.yml)
-[![Code Checks](https://github.com/DanielAvdar/SchemArrow/actions/workflows/code-checks.yml/badge.svg)](https://github.com/DanielAvdar/SchemArrow/actions/workflows/code-checks.yml)
-[![License](https://img.shields.io/:license-MIT-blue.svg)](https://opensource.org/license/mit/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/SchemArrow)](https://pypi.org/project/SchemArrow/)
+[![version](https://img.shields.io/pypi/v/SchemArrow)](https://img.shields.io/pypi/v/SchemArrow)
+[![License](https://img.shields.io/:license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 ![OS](https://img.shields.io/badge/ubuntu-blue?logo=ubuntu)
 ![OS](https://img.shields.io/badge/win-blue?logo=windows)
 ![OS](https://img.shields.io/badge/mac-blue?logo=apple)
+[![Code Checks](https://github.com/DanielAvdar/SchemArrow/actions/workflows/code-checks.yml/badge.svg)](https://github.com/DanielAvdar/SchemArrow/actions/workflows/code-checks.yml)
+[![Tests](https://github.com/DanielAvdar/SchemArrow/actions/workflows/ci.yml/badge.svg)](https://github.com/DanielAvdar/SchemArrow/actions/workflows/ci.yml)
+[![Codecov](https://codecov.io/gh/DanielAvdar/SchemArrow/branch/master/graph/badge.svg)](https://codecov.io/gh/DanielAvdar/SchemArrow)
+
 
 `SchemArrow` simplifies the conversion between pandas and Arrow DataFrames, allowing seamlessly switch to pyarrow pandas backend.
-**Get started:**
+
 ## Get started:
 ### Installation
 To install the package use pip:
@@ -25,6 +27,7 @@ pip install schemarrow
 
 ```python
 import pandas as pd
+
 from schemarrow import SchemArrow
 
 # Create a pandas DataFrame
@@ -39,9 +42,9 @@ df = pd.DataFrame({
 arrow_schema = SchemArrow()
 
 # Convert the pandas DataFrame dtypes to arrow dtypes
-df_pa: pd.DataFrame = arrow_schema(df)
+adf: pd.DataFrame = arrow_schema(df)
 
-print(df_pa.dtypes)
+print(adf.dtypes)
 ```
 outputs:
 ```
@@ -51,3 +54,121 @@ C    double[pyarrow]
 D      bool[pyarrow]
 dtype: object
 ```
+
+
+Furthermore, it's possible to add mappings or override existing ones:
+
+```python
+import pandas as pd
+
+from schemarrow import SchemArrow
+
+# Create a pandas DataFrame
+df = pd.DataFrame({
+    'A': [1, 2, 3],
+    'B': ['a', 'b', 'c'],
+    'C': [1.1, 2.2, 3.3],
+    'D': [True, False, True]
+})
+
+# Instantiate a SchemArrow object
+arrow_schema = SchemArrow(custom_mapper={'int64': 'int32[pyarrow]', 'float64': 'float32[pyarrow]'})
+
+# Convert the pandas DataFrame dtypes to arrow dtypes
+adf: pd.DataFrame = arrow_schema(df)
+
+print(adf.dtypes)
+```
+outputs:
+```
+A     int32[pyarrow]
+B    string[pyarrow]
+C     float[pyarrow]
+D      bool[pyarrow]
+dtype: object
+```
+
+
+SchmeArrow also support db-dtypes used by bigquery python sdk:
+```bash
+pip install pandas-gbq
+```
+```python
+import pandas_gbq as gbq
+
+from schemarrow.schema_arrow import SchemArrow
+
+# Specify the public dataset and table you want to query
+dataset_id = "bigquery-public-data"
+table_name = "hacker_news.stories"
+
+# Construct the query string
+query = """
+    SELECT * FROM `bigquery-public-data.austin_311.311_service_requests` LIMIT 1000
+"""
+
+# Use pandas_gbq to read the data from BigQuery
+df = gbq.read_gbq(query)
+schema_arrow = SchemArrow()
+adf = schema_arrow(df)
+# Print the retrieved data
+print(df.dtypes)
+print(adf.dtypes)
+```
+outputs:
+```
+unique_key                               object
+complaint_description                    object
+source                                   object
+status                                   object
+status_change_date          datetime64[us, UTC]
+created_date                datetime64[us, UTC]
+last_update_date            datetime64[us, UTC]
+close_date                  datetime64[us, UTC]
+incident_address                         object
+street_number                            object
+street_name                              object
+city                                     object
+incident_zip                              Int64
+county                                   object
+state_plane_x_coordinate                 object
+state_plane_y_coordinate                float64
+latitude                                float64
+longitude                               float64
+location                                 object
+council_district_code                     Int64
+map_page                                 object
+map_tile                                 object
+dtype: object
+unique_key                         string[pyarrow]
+complaint_description              string[pyarrow]
+source                             string[pyarrow]
+status                             string[pyarrow]
+status_change_date          timestamp[us][pyarrow]
+created_date                timestamp[us][pyarrow]
+last_update_date            timestamp[us][pyarrow]
+close_date                  timestamp[us][pyarrow]
+incident_address                   string[pyarrow]
+street_number                      string[pyarrow]
+street_name                        string[pyarrow]
+city                               string[pyarrow]
+incident_zip                        int64[pyarrow]
+county                             string[pyarrow]
+state_plane_x_coordinate           string[pyarrow]
+state_plane_y_coordinate           double[pyarrow]
+latitude                           double[pyarrow]
+longitude                          double[pyarrow]
+location                           string[pyarrow]
+council_district_code               int64[pyarrow]
+map_page                           string[pyarrow]
+map_tile                           string[pyarrow]
+dtype: object
+```
+
+## Purposes
+- Simplify the conversion between pandas pyarrow and numpy backends.
+- Allow seamlessly switch to pyarrow pandas backend.
+- dtype standardization for db-dtypes used by bigquery python sdk.
+## Additional Information
+When converting from higher precision numerical dtypes (like float64) to
+lower precision (like float32), data precision might be compromised.

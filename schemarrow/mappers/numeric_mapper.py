@@ -4,9 +4,7 @@ from typing import Dict, List
 
 @dataclasses.dataclass
 class NumericTimeMapper:
-    source_types: List[str] = dataclasses.field(
-        default_factory=lambda: ["float", "int", "Float", "Int"]
-    )
+    source_types: List[str] = dataclasses.field(default_factory=lambda: ["float", "int", "Float", "Int"])
     variations: List[str] = dataclasses.field(
         default_factory=lambda: [
             "8",

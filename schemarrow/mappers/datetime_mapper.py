@@ -20,10 +20,7 @@ class DateTimeMapper:
 
     @property
     def all_time_res_combs(self) -> Dict[str, str]:
-        return {
-            f"{self.source_type}[{res}]": f"{self.target_type}[{res}][pyarrow]"
-            for res in self.time_resolutions
-        }
+        return {f"{self.source_type}[{res}]": f"{self.target_type}[{res}][pyarrow]" for res in self.time_resolutions}
 
     @property
     def all_time_res_tz_combs(self) -> Dict[str, str]:
