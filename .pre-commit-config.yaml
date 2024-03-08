@@ -15,7 +15,7 @@ repos:
         entry: black
         language: python
         types: [ python ]
-        args: [ "--line-length", "100" ,".",]
+        args: [ "--line-length", "120" ,".",]
 
       - id: isort
         name: isort
@@ -36,11 +36,10 @@ repos:
         language: system
         types: [ python ]
         args: [ "-rn", "-sn", "--rcfile=.pylintrc", "--fail-on=I" ]
-        files: "schemarrow"
+
       - id: mypy
         name: mypy
         entry: mypy
         language: python
         types: [ python ]
-        files: "schemarrow"
         args: [ "--config-file", "mypy.ini" ]
