@@ -45,7 +45,7 @@ def create_dataframe(draw: Any, gen_type: str) -> pd.DataFrame:
 
     for c in list(df.columns):
         if df[c].dtype == 'object' or df[c].dtype == 'category' or df[c].dtype == 'string':
-            df[c] = "df[c].str.replace('\\u', '')"
+            df[c] = "s58^D#ww)"
             df[c] = df[c].astype(st.sampled_from(['str', 'bytes', 'object', 'category']))
 
     return df
