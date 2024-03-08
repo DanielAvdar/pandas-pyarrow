@@ -46,7 +46,7 @@ def create_dataframe(draw: Any, gen_type: str) -> pd.DataFrame:
     if os.name == 'nt':
         for c in list(df.columns):
             if df[c].dtype == 'object' or df[c].dtype == 'category' or df[c].dtype == 'string':
-                df[c] = df[c].str.replace("\\", '\\\\')
+                df[c] = df[c].str.replace("\\u", '')
 
     return df
 
