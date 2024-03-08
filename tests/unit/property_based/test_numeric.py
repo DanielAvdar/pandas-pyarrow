@@ -18,7 +18,6 @@ from tests.unit.property_based.pb_sts import single_column_df_st
 
     )
 )
-# @pytest.mark.filterwarnings("ignore::RuntimeWarning")  # there is a warning about overflow casting
 def test_float_numpy_api_hp(pair: Tuple[pd.DataFrame, str]):
     sa = SchemArrow()
     df, target_dtype = pair
@@ -37,7 +36,6 @@ def test_float_numpy_api_hp(pair: Tuple[pd.DataFrame, str]):
 
     )
 )
-# @pytest.mark.filterwarnings("ignore::RuntimeWarning")  # there is a warning about overflow casting
 def test_float_array_api_hp(pair: Tuple[pd.DataFrame, str]):
     sa = SchemArrow()
     df, target_dtype = pair
