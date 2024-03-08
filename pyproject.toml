@@ -73,16 +73,13 @@ unfixable = []
 combine-as-imports = true
 section-order = ["future", "standard-library", "first-party", "local-folder", "third-party"]
 [tool.mypy]
-python_version = 3.11
-ignore_missing_imports = true
+python_version = ">=3.9"
 disallow_untyped_defs = true
 check_untyped_defs = true
 warn_redundant_casts = true
 warn_unused_ignores = true
 strict_optional = false
-warn_no_return = false
-warn_unreachable = false
-exclude = ["^test/"]
+
 
 [[tool.mypy.overrides]]
 module = "tests.*"
