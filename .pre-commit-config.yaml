@@ -6,40 +6,19 @@ repos:
       - id: end-of-file-fixer
       - id: trailing-whitespace
       - id: no-commit-to-branch
-  - repo: local
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.4
     hooks:
-      - id: black
-        name: black
-        entry: black
-        language: python
-        types: [ python ]
-        args: [ "--line-length", "120" ,".",]
+      - id: ruff
+      - id: ruff-format
 
-      - id: isort
-        name: isort
-        entry: isort
-        require_serial: true
-        language: python
-        types_or: [ cython, pyi, python ]
-      - id: flake8
-        name: flake8
-        entry: flake8
-        language: python
-        types: [ python ]
-        args:
-          - "--config=.flake8"
-      - id: pylint
-        name: pylint
-        entry: pylint
-        language: system
-        types: [ python ]
-        args: [ "-rn", "-sn", "--rcfile=.pylintrc", "--fail-on=I" ]
-        exclude: tests(/\w*)*/functional/|tests/input|tests(/\w*)*data/|doc/
+  - repo: local
 
+    hooks:
       - id: mypy
         name: mypy
         entry: mypy
         language: python
         types: [ python ]
-        args: [ "--config-file", "mypy.ini" ]
-        exclude: tests(/\w*)*/functional/|tests/input|tests(/\w*)*data/|doc/
+        args: [ "--config-file", "pyproject.toml" ]
