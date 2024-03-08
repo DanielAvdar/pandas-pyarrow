@@ -13,7 +13,7 @@ class SchemArrow:
     **disclaimer**: not yet implemented
     :param custom_mapper: dictionary with key as the source data type and value as the target data type.
     will override default mapping
-    :param default_to_source: Optional string specifying the default data type to use if no mapping is found for a
+    :param default_target_type: Optional string specifying the default data type to use if no mapping is found for a
      specific data type. Default is "string[pyarrow]".
 
     Methods:
@@ -25,11 +25,11 @@ class SchemArrow:
         self,
         parquet_compatible: Optional[bool] = False,
         custom_mapper: Optional[Dict[str, str]] = None,
-        default_to_source: Optional[str] = "string[pyarrow]",
+        default_target_type: Optional[str] = "string[pyarrow]",
     ):
         self.parquet_compatible = parquet_compatible
         self.additional_mapper_dicts = custom_mapper or {}
-        self.defaults_dtype = default_to_source
+        self.defaults_dtype = default_target_type
         self._mapper = create_mapper() | self.additional_mapper_dicts
 
     def __call__(self, df: pd.DataFrame) -> pd.DataFrame:

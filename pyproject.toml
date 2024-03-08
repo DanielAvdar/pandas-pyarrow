@@ -62,7 +62,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.ruff]
 line-length = 120
-include = ["pyproject.toml", "tests/**",  "schemarrow/**",]# ".github/workflows/**", ]
+include = ["pyproject.toml", "tests/**",  "schemarrow/**",]
 
 [tool.ruff.lint]
 select = ["E4", "E7", "E9", "F", "B", "I"]
