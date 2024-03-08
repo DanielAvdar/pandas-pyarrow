@@ -1,3 +1,4 @@
+import os
 from typing import Any, Dict, List, Tuple, Union
 
 import pandas as pd
@@ -29,10 +30,10 @@ def dtypes_st(draw: Any) -> Any:
     return draw(dtypes)
 
 
-def create_dataframe(draw: Any, gen_type: str, col_names: str) -> pd.DataFrame:
+def create_dataframe(draw: Any, gen_type: str) -> pd.DataFrame:
     dfs_st = data_frames(
         columns=columns(
-            [col_names],
+            1,
             dtype=gen_type,
         ),
         index=range_indexes(
@@ -41,7 +42,13 @@ def create_dataframe(draw: Any, gen_type: str, col_names: str) -> pd.DataFrame:
         ),
 
     )
-    return draw(dfs_st)
+    df = draw(dfs_st)
+    if os.name == 'nt':
+        for c in list(df.columns):
+            if df[c].dtype == 'object' or df[c].dtype == 'category' or df[c].dtype == 'string':
+                df[c] = df[c].str.replace("\\", '\\\\')
+
+    return df
 
 
 @composite
@@ -67,9 +74,8 @@ def single_column_df_st(
         pair_mapping: Dict[str, str],
         gen_type: str = '',
 ) -> Tuple[pd.DataFrame, str]:
-    col_name = draw(st.text(min_size=1, max_size=10))
     pair: Tuple[str, str] = draw(st.sampled_from(list(pair_mapping.items())))
     source_dtype_name, target_dtype_name = pair
-    df = create_dataframe(draw, gen_type or source_dtype_name.lower(), col_name)
+    df = create_dataframe(draw, gen_type or source_dtype_name.lower())
     df: pd.DataFrame = df.astype(source_dtype_name)
     return df, target_dtype_name
