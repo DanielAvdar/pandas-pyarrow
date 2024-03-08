@@ -8,10 +8,33 @@ readme = "README.md"
 homepage = "https://github.com/DanielAvdar/SchemArrow"
 repository = "https://github.com/DanielAvdar/SchemArrow"
 documentation = "https://github.com/DanielAvdar/SchemArrow"
-keywords = ["pandas", "pyarrow", "arrow", "schemarrow", "pandas-pyarrow", "pandas-arrow", "pandas-backend", "data-processing", "data-conversion", "backend-switch", "high-performance", "datasets", "big-data", "data-serialization", "data-analysis", "data-science", "machine-learning", "AI", "python-library", "data-backend", "performance-optimization", "memory-efficient", "python"]
-    packages = [
-    { include = "schemarrow", from = "." },
+keywords = [
+  "pandas",
+  "pyarrow",
+  "arrow",
+  "schemarrow",
+  "pandas-pyarrow",
+  "pandas-arrow",
+  "pandas-backend",
+  "data-processing",
+  "data-conversion",
+  "backend-switch",
+  "high-performance",
+  "datasets",
+  "big-data",
+  "data-serialization",
+  "data-analysis",
+  "data-science",
+  "machine-learning",
+  "AI",
+  "python-library",
+  "data-backend",
+  "performance-optimization",
+  "memory-efficient",
+  "python"
 ]
+packages = [ { include = "schemarrow", from = "." } ]
+
 [tool.poetry.dependencies]
 python = ">=3.9,<3.13"
 pandas = ">=2"
@@ -23,19 +46,44 @@ pytest = ">= 7.1.2"
 hypothesis = ">= 6.23.3"
 pre-commit = ">= 2.20.0"
 pytest-cov = ">= 4.0.0"
-pylint = ">= 3"
 mypy = ">= 0.991"
-pylint-junit = ">= 0.3.2"
-pylint-pytest = ">= 0.3.0"
 pytest-parametrization = "^2022"
-black = "*"
-flake8 = "*"
-isort = "*"
+pandas-gbq = "*"
 types-pytz = "*"
+pandas-stubs = "*"
+ruff = "^0.3.1"
 
 [tool.poetry.extras]
-db-dtypes = ['db-dtypes']
+db-dtypes = ["db-dtypes"]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 120
+include = ["pyproject.toml", "tests/**",  "schemarrow/**",]# ".github/workflows/**", ]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "B", "I"]
+fixable = ["ALL"]
+unfixable = []
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+section-order = ["future", "standard-library", "first-party", "local-folder", "third-party"]
+[tool.mypy]
+python_version = 3.11
+ignore_missing_imports = true
+disallow_untyped_defs = true
+check_untyped_defs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+strict_optional = false
+warn_no_return = false
+warn_unreachable = false
+exclude = ["^test/"]
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+ignore_errors = true
