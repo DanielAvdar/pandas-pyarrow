@@ -1,16 +1,14 @@
+from schemarrow.schema_arrow import SchemArrow
+
 import db_dtypes as dbdt
 import pandas as pd
 from parametrization import Parametrization
-
-from schemarrow.schema_arrow import SchemArrow
 
 
 @Parametrization.autodetect_parameters()
 @Parametrization.case(
     name="dbdate case",
-    df_data=pd.DataFrame(
-        data={"col1": [pd.Timestamp("2021-01-01"), None]}, dtype=dbdt.DateDtype()
-    ),
+    df_data=pd.DataFrame(data={"col1": [pd.Timestamp("2021-01-01"), None]}, dtype=dbdt.DateDtype()),
     expected_dtype="date32[pyarrow]",
 )
 @Parametrization.case(

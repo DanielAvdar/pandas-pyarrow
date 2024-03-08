@@ -39,14 +39,8 @@ def create_dataframe(draw: Any, gen_type: str) -> pd.DataFrame:
             min_size=1,
             max_size=6,
         ),
-
     )
-    df = draw(dfs_st)
-
-    for c in list(df.columns):
-        if df[c].dtype == 'object' or df[c].dtype == 'category' or df[c].dtype == 'string':
-            df[c] = "s58^D#ww)"
-            df[c] = df[c].astype(st.sampled_from(['str', 'bytes', 'object', 'category']))
+    df: pd.DataFrame = draw(dfs_st)
 
     return df
 
@@ -54,6 +48,7 @@ def create_dataframe(draw: Any, gen_type: str) -> pd.DataFrame:
 @composite
 def df_st(draw: Any) -> pd.DataFrame:
     col_names = draw(st.sets(st.text(min_size=1, max_size=10), min_size=2, max_size=5))
+
     dfs_st = data_frames(
         columns=columns(
             col_names,
@@ -63,16 +58,20 @@ def df_st(draw: Any) -> pd.DataFrame:
             min_size=2,
             max_size=8,
         ),
-
     )
-    return draw(dfs_st)
+    df: pd.DataFrame = draw(dfs_st)
+    category_columns = df.select_dtypes(include=["object"]).columns
+    df[category_columns] = "s58^D#ww)"
+    object_types = ["object", "string", "bytes", "str", "category", "O"]
+    df[category_columns] = df[category_columns].astype(draw(st.sampled_from(object_types)))
+    return df
 
 
 @composite
 def single_column_df_st(
-        draw: Any,
-        pair_mapping: Dict[str, str],
-        gen_type: str = '',
+    draw: Any,
+    pair_mapping: Dict[str, str],
+    gen_type: str = "",
 ) -> Tuple[pd.DataFrame, str]:
     pair: Tuple[str, str] = draw(st.sampled_from(list(pair_mapping.items())))
     source_dtype_name, target_dtype_name = pair
