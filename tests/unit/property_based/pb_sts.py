@@ -1,4 +1,3 @@
-import os
 from typing import Any, Dict, List, Tuple, Union
 
 import pandas as pd
@@ -43,10 +42,10 @@ def create_dataframe(draw: Any, gen_type: str) -> pd.DataFrame:
 
     )
     df = draw(dfs_st)
-    if os.name == 'nt':
-        for c in list(df.columns):
-            if df[c].dtype == 'object' or df[c].dtype == 'category' or df[c].dtype == 'string':
-                df[c] = df[c].str.replace("\\u", '')
+
+    for c in list(df.columns):
+        if df[c].dtype == 'object' or df[c].dtype == 'category' or df[c].dtype == 'string':
+            df[c] = df[c].str.replace("\\u", '')
 
     return df
 
