@@ -2,7 +2,6 @@ from typing import Tuple
 
 import hypothesis as hp
 import pandas as pd
-import pytest
 
 from schemarrow import SchemArrow
 from schemarrow.mappers import NumericTimeMapper
@@ -11,7 +10,7 @@ from tests.unit.property_based.pb_sts import single_column_df_st
 
 @hp.given(
     pair=single_column_df_st(
-        gen_type=float,
+
         pair_mapping=NumericTimeMapper(
             source_types=["float", ],
             variations=["16", "32", "64"],
@@ -19,7 +18,7 @@ from tests.unit.property_based.pb_sts import single_column_df_st
 
     )
 )
-@pytest.mark.filterwarnings("ignore::RuntimeWarning")  # there is a warning about overflow casting
+# @pytest.mark.filterwarnings("ignore::RuntimeWarning")  # there is a warning about overflow casting
 def test_float_numpy_api_hp(pair: Tuple[pd.DataFrame, str]):
     sa = SchemArrow()
     df, target_dtype = pair
@@ -30,7 +29,7 @@ def test_float_numpy_api_hp(pair: Tuple[pd.DataFrame, str]):
 
 @hp.given(
     pair=single_column_df_st(
-        gen_type=float,
+
         pair_mapping=NumericTimeMapper(
             source_types=["Float", ],
             variations=["32", "64"],
@@ -38,7 +37,7 @@ def test_float_numpy_api_hp(pair: Tuple[pd.DataFrame, str]):
 
     )
 )
-@pytest.mark.filterwarnings("ignore::RuntimeWarning")  # there is a warning about overflow casting
+# @pytest.mark.filterwarnings("ignore::RuntimeWarning")  # there is a warning about overflow casting
 def test_float_array_api_hp(pair: Tuple[pd.DataFrame, str]):
     sa = SchemArrow()
     df, target_dtype = pair
@@ -49,7 +48,7 @@ def test_float_array_api_hp(pair: Tuple[pd.DataFrame, str]):
 
 @hp.given(
     pair=single_column_df_st(
-        gen_type=int,
+
         pair_mapping=NumericTimeMapper(
             source_types=["int", ],
             variations=["8", "16", "32", "64"],
@@ -67,7 +66,7 @@ def test_int_numpy_api_hp(pair: Tuple[pd.DataFrame, str]):
 
 @hp.given(
     pair=single_column_df_st(
-        gen_type=int,
+
         pair_mapping=NumericTimeMapper(
             source_types=["Int", ],
             variations=["32", "64"],

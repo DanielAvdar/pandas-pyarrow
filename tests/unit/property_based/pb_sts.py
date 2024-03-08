@@ -65,11 +65,11 @@ def df_st(draw: Any) -> pd.DataFrame:
 def single_column_df_st(
         draw: Any,
         pair_mapping: Dict[str, str],
-        gen_type: str,
+        gen_type: str = '',
 ) -> Tuple[pd.DataFrame, str]:
     col_name = draw(st.text(min_size=1, max_size=10))
     pair: Tuple[str, str] = draw(st.sampled_from(list(pair_mapping.items())))
     source_dtype_name, target_dtype_name = pair
-    df = create_dataframe(draw, gen_type, col_name)
+    df = create_dataframe(draw, gen_type or source_dtype_name.lower(), col_name)
     df: pd.DataFrame = df.astype(source_dtype_name)
     return df, target_dtype_name
