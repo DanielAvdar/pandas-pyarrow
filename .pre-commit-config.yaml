@@ -12,7 +12,7 @@ repos:
       - id: ruff-format
         args: [ --preview ]
       - id: ruff
-        args: [ --preview ]
+        args: [ --preview, --fix]
 
   - repo: local
     hooks:
