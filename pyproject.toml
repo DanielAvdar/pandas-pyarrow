@@ -9,31 +9,31 @@ homepage = "https://github.com/DanielAvdar/SchemArrow"
 repository = "https://github.com/DanielAvdar/SchemArrow"
 documentation = "https://github.com/DanielAvdar/SchemArrow"
 keywords = [
-  "pandas",
-  "pyarrow",
-  "arrow",
-  "schemarrow",
-  "pandas-pyarrow",
-  "pandas-arrow",
-  "pandas-backend",
-  "data-processing",
-  "data-conversion",
-  "backend-switch",
-  "high-performance",
-  "datasets",
-  "big-data",
-  "data-serialization",
-  "data-analysis",
-  "data-science",
-  "machine-learning",
-  "AI",
-  "python-library",
-  "data-backend",
-  "performance-optimization",
-  "memory-efficient",
-  "python"
+    "pandas",
+    "pyarrow",
+    "arrow",
+    "schemarrow",
+    "pandas-pyarrow",
+    "pandas-arrow",
+    "pandas-backend",
+    "data-processing",
+    "data-conversion",
+    "backend-switch",
+    "high-performance",
+    "datasets",
+    "big-data",
+    "data-serialization",
+    "data-analysis",
+    "data-science",
+    "machine-learning",
+    "AI",
+    "python-library",
+    "data-backend",
+    "performance-optimization",
+    "memory-efficient",
+    "python"
 ]
-packages = [ { include = "schemarrow", from = "." } ]
+packages = [{ include = "schemarrow", from = "." }]
 
 [tool.poetry.dependencies]
 python = ">=3.9,<3.13"
@@ -62,18 +62,18 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.ruff]
 line-length = 120
-include = ["pyproject.toml", "tests/**",  "schemarrow/**",]
+include = ["pyproject.toml", "tests/**", "schemarrow/**",]
 
 [tool.ruff.lint]
-select = ["E4", "E7", "E9", "F", "B", "I"]
+select = ["F", "B", "I", "F", "W", "E","A","N"]
+
 fixable = ["ALL"]
-unfixable = []
 
 [tool.ruff.lint.isort]
 combine-as-imports = true
 section-order = ["future", "standard-library", "first-party", "local-folder", "third-party"]
 [tool.mypy]
-python_version = ">=3.9"
+python_version = "3.11"
 disallow_untyped_defs = true
 check_untyped_defs = true
 warn_redundant_casts = true
