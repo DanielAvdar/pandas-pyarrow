@@ -2,7 +2,7 @@ name: Publish Package
 
 on:
   release:
-    types: [published]
+    types: [ published ]
 
 permissions:
   contents: read
@@ -10,22 +10,13 @@ permissions:
 jobs:
   publish:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v4
-    - name: Install Python
-      uses: actions/setup-python@v5
-    - name: Install poetry
-      uses: abatilo/actions-poetry@v2
-    - name: Install with integrations
-      run: poetry install -E db-dtypes
-    - name: All tests
-      run: poetry run pytest
-    - name: Stamp Version
-      run: poetry version ${{ github.ref_name }}
-    - name: Build
-      run: poetry build
-    - name: Set Token
-      run: poetry config pypi-token.pypi ${{ secrets.PYPI_API_TOKEN }}
-    - name: Publish
-      run: poetry publish
+      - uses: actions/checkout@v4
+      - run: pipx install poetry
+      - uses: actions/setup-python@v4
+      - run: poetry install
+      - run: poetry run pytest
+      - run: poetry version ${{ github.ref_name }}
+      - run: poetry build
+      - run: poetry config pypi-token.pypi ${{ secrets.PYPI_API_TOKEN }}
+      - run: poetry publish
