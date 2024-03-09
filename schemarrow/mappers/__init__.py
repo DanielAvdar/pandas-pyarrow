@@ -1,6 +1,6 @@
 from typing import Dict
 
-from schemarrow.mappers.datetime_mapper import DateTimeMapper
+from schemarrow.mappers.datetime_mapper import datetime_mapper
 from schemarrow.mappers.db_types import mapper_db_types
 from schemarrow.mappers.dtype_mapper import mapper_dict_dt, mapper_dict_object
 from schemarrow.mappers.numeric_mapper import numeric_mapper
@@ -11,7 +11,7 @@ def create_mapper() -> Dict[str, str]:
         **numeric_mapper(["float"], ["16", "32", "64"]),
         **numeric_mapper(["int"], ["8", "16", "32", "64"]),
         **numeric_mapper(["Float", "Int"], ["32", "64"]),
-        **DateTimeMapper()(),
+        **datetime_mapper(),
         **mapper_dict_dt,
         **mapper_dict_object,
         **mapper_db_types,
@@ -24,6 +24,6 @@ __all__ = [
     "mapper_dict_object",
     "create_mapper",
     "mapper_db_types",
-    "DateTimeMapper",
+    "datetime_mapper",
     "numeric_mapper",
 ]
