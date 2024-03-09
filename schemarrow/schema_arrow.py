@@ -6,8 +6,7 @@ import pandas as pd
 
 
 class SchemArrow:
-    """
-    SchemArrow manages the conversion of Pandas DataFrame data types to Arrow data types.
+    """SchemArrow manages the conversion of Pandas DataFrame data types to Arrow data types.
 
     :param parquet_compatible: if True, columns names will be converted to parquet compatible names. Default is False.
     **disclaimer**: not yet implemented
@@ -16,7 +15,8 @@ class SchemArrow:
     :param default_target_type: Optional string specifying the default data type to use if no mapping is found for a
      specific data type. Default is "string[pyarrow]".
 
-    Methods:
+    Methods
+    -------
     - __call__(self, df: pd.DataFrame) -> pd.DataFrame: Converts the data types of the given Pandas DataFrame
      and returns the converted DataFrame.
     """
