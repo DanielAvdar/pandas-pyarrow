@@ -1,37 +1,16 @@
-import dataclasses
 from typing import Dict, List
 
 
-@dataclasses.dataclass
-class NumericTimeMapper:
-    source_types: List[str] = dataclasses.field(default_factory=lambda: ["float", "int", "Float", "Int"])
-    variations: List[str] = dataclasses.field(
-        default_factory=lambda: [
-            "8",
-            "16",
-            "32",
-            "64",
-        ]
-    )
-
-    @property
-    def all_ints(self) -> Dict[str, str]:
+def numeric_mapper(source_types: List[str], variations: List[str]) -> Dict[str, str]:
+    def get_mapping(source_types: List[str]) -> Dict[str, str]:
         return {
             f"{source_type}{var}": f"{source_type.lower()}{var}[pyarrow]"
-            for source_type in self.source_types
-            for var in self.variations
+            for source_type in source_types
+            for var in variations
         }
 
-    @property
-    def all_floats(self) -> Dict[str, str]:
-        return {
-            f"{source_type}{var}": f"{source_type.lower()}{var}[pyarrow]"
-            for source_type in self.source_types
-            for var in self.variations
-        }
+    all_ints = get_mapping([source_type for source_type in source_types if "int" in source_type.lower()])
+    all_floats = get_mapping([source_type for source_type in source_types if "float" in source_type.lower()])
+    all_combinations = {**all_ints, **all_floats}
 
-    def __call__(
-        self,
-    ) -> Dict[str, str]:
-        all_combinations = {**self.all_ints, **self.all_floats}
-        return all_combinations
+    return all_combinations

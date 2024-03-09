@@ -1,7 +1,7 @@
 from typing import Tuple
 
 from schemarrow import SchemArrow
-from schemarrow.mappers import NumericTimeMapper
+from schemarrow.mappers import numeric_mapper
 from tests.unit.property_based.pb_sts import single_column_df_st
 
 import hypothesis as hp
@@ -10,12 +10,12 @@ import pandas as pd
 
 @hp.given(
     pair=single_column_df_st(
-        pair_mapping=NumericTimeMapper(
+        pair_mapping=numeric_mapper(
             source_types=[
                 "float",
             ],
             variations=["16", "32", "64"],
-        )()
+        )
     )
 )
 def test_float_numpy_api_hp(pair: Tuple[pd.DataFrame, str]):
@@ -28,12 +28,12 @@ def test_float_numpy_api_hp(pair: Tuple[pd.DataFrame, str]):
 
 @hp.given(
     pair=single_column_df_st(
-        pair_mapping=NumericTimeMapper(
+        pair_mapping=numeric_mapper(
             source_types=[
                 "Float",
             ],
             variations=["32", "64"],
-        )()
+        )
     )
 )
 def test_float_array_api_hp(pair: Tuple[pd.DataFrame, str]):
@@ -46,12 +46,12 @@ def test_float_array_api_hp(pair: Tuple[pd.DataFrame, str]):
 
 @hp.given(
     pair=single_column_df_st(
-        pair_mapping=NumericTimeMapper(
+        pair_mapping=numeric_mapper(
             source_types=[
                 "int",
             ],
             variations=["8", "16", "32", "64"],
-        )()
+        )
     )
 )
 def test_int_numpy_api_hp(pair: Tuple[pd.DataFrame, str]):
@@ -64,12 +64,12 @@ def test_int_numpy_api_hp(pair: Tuple[pd.DataFrame, str]):
 
 @hp.given(
     pair=single_column_df_st(
-        pair_mapping=NumericTimeMapper(
+        pair_mapping=numeric_mapper(
             source_types=[
                 "Int",
             ],
             variations=["32", "64"],
-        )()
+        )
     )
 )
 def test_int_array_api_hp(pair: Tuple[pd.DataFrame, str]):
