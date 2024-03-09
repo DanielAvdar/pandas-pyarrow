@@ -10,8 +10,10 @@ repos:
     rev: v0.1.4
     hooks:
       - id: ruff-format
+        args: [ --preview ]
       - id: ruff
-        args: [ --fix, --config, pyproject.toml, ]
+        args: [ --preview ]
+
   - repo: local
     hooks:
       - id: mypy
