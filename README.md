@@ -1,13 +1,13 @@
 # pandas-pyarrow
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pandas-arrow)](https://pypi.org/project/pandas-arrow/)
-[![version](https://img.shields.io/pypi/v/pandas-arrow)](https://img.shields.io/pypi/v/pandas-arrow)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pandas-pyarrow)](https://pypi.org/project/pandas-pyarrow/)
+[![version](https://img.shields.io/pypi/v/pandas-pyarrow)](https://img.shields.io/pypi/v/pandas-pyarrow)
 [![License](https://img.shields.io/:license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 ![OS](https://img.shields.io/badge/ubuntu-blue?logo=ubuntu)
 ![OS](https://img.shields.io/badge/win-blue?logo=windows)
 ![OS](https://img.shields.io/badge/mac-blue?logo=apple)
-[![Tests](https://github.com/DanielAvdar/pandas-arrow/actions/workflows/ci.yml/badge.svg)](https://github.com/DanielAvdar/pandas-arrow/actions/workflows/ci.yml)
-[![Code Checks](https://github.com/DanielAvdar/pandas-arrow/actions/workflows/code-checks.yml/badge.svg)](https://github.com/DanielAvdar/pandas-arrow/actions/workflows/code-checks.yml)
-[![codecov](https://codecov.io/gh/DanielAvdar/pandas-arrow/graph/badge.svg?token=N0V9KANTG2)](https://codecov.io/gh/DanielAvdar/pandas-arrow)
+[![Tests](https://github.com/DanielAvdar/pandas-pyarrow/actions/workflows/ci.yml/badge.svg)](https://github.com/DanielAvdar/pandas-pyarrow/actions/workflows/ci.yml)
+[![Code Checks](https://github.com/DanielAvdar/pandas-pyarrow/actions/workflows/code-checks.yml/badge.svg)](https://github.com/DanielAvdar/pandas-pyarrow/actions/workflows/code-checks.yml)
+[![codecov](https://codecov.io/gh/DanielAvdar/pandas-pyarrow/graph/badge.svg?token=N0V9KANTG2)](https://codecov.io/gh/DanielAvdar/pandas-pyarrow)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
 `pandas-pyarrow` simplifies the conversion of pandas backend to pyarrow, allowing seamlessly switch to pyarrow pandas backend.
