@@ -1,13 +1,13 @@
 [tool.poetry]
-name = "schemarrow"
-version = "0.1.0"
+name = "pandas-pyarrow"
+version = "0.0.0"
 description = "A library for switching pandas backend to pyarrow"
 authors = ["DanielAvdar <66269169+DanielAvdar@users.noreply.github.com>"]
 license = "MIT"
 readme = "README.md"
-homepage = "https://github.com/DanielAvdar/SchemArrow"
-repository = "https://github.com/DanielAvdar/SchemArrow"
-documentation = "https://github.com/DanielAvdar/SchemArrow"
+homepage = "https://github.com/DanielAvdar/pandas-pyarrow"
+repository = "https://github.com/DanielAvdar/pandas-pyarrow"
+documentation = "https://github.com/DanielAvdar/pandas-pyarrow"
 keywords = [
     "pandas",
     "pyarrow",
@@ -33,7 +33,7 @@ keywords = [
     "memory-efficient",
     "python"
 ]
-packages = [{ include = "schemarrow", from = "." }]
+packages = [{ include = "pandas_pyarrow", from = "." }]
 
 [tool.poetry.dependencies]
 python = ">=3.9,<3.13"
@@ -61,7 +61,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.ruff]
 line-length = 120
-include = ["pyproject.toml", "tests/**", "schemarrow/**",]
+include = ["pyproject.toml", "tests/**", "pandas_pyarrow/**",]
 
 [tool.ruff.lint]
 select = ["F", "B", "I", "F", "W", "E","A","N"]

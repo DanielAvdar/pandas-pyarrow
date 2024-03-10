@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from schemarrow.schema_arrow import SchemArrow
+from pandas_pyarrow.pda_converter import PandasArrowConverter
 
 import pandas as pd
 from parametrization import Parametrization
@@ -19,7 +19,7 @@ from pytz import timezone
     expected_dtype="timestamp[ms][pyarrow]",
 )
 def test_dt_types(df_data, expected_dtype):
-    sa = SchemArrow()
+    sa = PandasArrowConverter()
     adf = sa(df_data)
 
     assert list(adf.dtypes)[0] == expected_dtype
@@ -43,7 +43,7 @@ def test_dt_types(df_data, expected_dtype):
 )
 def test_dt_tz_types(data, expected_dtype):
     df_data = pd.DataFrame(**data)
-    sa = SchemArrow()
+    sa = PandasArrowConverter()
     adf = sa(df_data)
 
     assert list(adf.dtypes)[0] == expected_dtype
@@ -76,7 +76,7 @@ def test_dt_tz_types(data, expected_dtype):
     expected_dtype="duration[ns][pyarrow]",
 )
 def test_timedelta_types(df_data, expected_dtype):
-    sa = SchemArrow()
+    sa = PandasArrowConverter()
     adf = sa(df_data)
 
     assert list(adf.dtypes)[0] == expected_dtype

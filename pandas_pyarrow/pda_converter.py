@@ -1,11 +1,11 @@
 from typing import Dict, List, Optional
 
-from schemarrow.mappers import create_mapper
+from pandas_pyarrow.mappers import create_mapper
 
 import pandas as pd
 
 
-class SchemArrow:
+class PandasArrowConverter:
     """SchemArrow manages the conversion of Pandas DataFrame data types to Arrow data types.
 
     :param parquet_compatible: if True, columns names will be converted to parquet compatible names. Default is False.

@@ -1,4 +1,4 @@
-from schemarrow.schema_arrow import SchemArrow
+from pandas_pyarrow.pda_converter import PandasArrowConverter
 
 import pandas as pd
 from parametrization import Parametrization
@@ -21,7 +21,7 @@ from parametrization import Parametrization
     expected_dtype="string[pyarrow]",
 )
 def test_object_types(df_data, expected_dtype):
-    sa = SchemArrow()
+    sa = PandasArrowConverter()
     adf = sa(df_data)
 
     assert list(adf.dtypes)[0] == expected_dtype

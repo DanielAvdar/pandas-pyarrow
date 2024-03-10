@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from schemarrow.schema_arrow import SchemArrow
+from pandas_pyarrow.pda_converter import PandasArrowConverter
 
 import pandas as pd
 from parametrization import Parametrization
@@ -26,7 +26,7 @@ from parametrization import Parametrization
     additional_mapper_dicts={"float64": "float32[pyarrow]"},
 )
 def test_add_dtypes_types(df_data, expected_dtype, additional_mapper_dicts):
-    sa = SchemArrow(custom_mapper=additional_mapper_dicts)
+    sa = PandasArrowConverter(custom_mapper=additional_mapper_dicts)
     adf = sa(df_data)
 
     assert list(adf.dtypes)[0] == expected_dtype
