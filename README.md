@@ -18,7 +18,7 @@
 To install the package use pip:
 
 ```bash
-pip install pandas_pyarrow
+pip install pandas-pyarrow
 ```
 ### Usage
 
