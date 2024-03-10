@@ -6,19 +6,19 @@ repos:
       - id: end-of-file-fixer
       - id: trailing-whitespace
       - id: no-commit-to-branch
-
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.1.4
     hooks:
       - id: ruff-format
+        args: [ --preview ]
       - id: ruff
+        args: [ --preview, --fix]
 
   - repo: local
-
     hooks:
       - id: mypy
         name: mypy
         entry: mypy
         language: python
         types: [ python ]
-        args: [ "--config-file", "pyproject.toml" ]
+        args: [ --config-file, pyproject.toml ]

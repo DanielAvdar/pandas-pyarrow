@@ -1,37 +1,19 @@
-import dataclasses
-from typing import Dict, List
+from typing import Callable, Dict, List
 
 
-@dataclasses.dataclass
-class NumericTimeMapper:
-    source_types: List[str] = dataclasses.field(default_factory=lambda: ["float", "int", "Float", "Int"])
-    variations: List[str] = dataclasses.field(
-        default_factory=lambda: [
-            "8",
-            "16",
-            "32",
-            "64",
-        ]
-    )
+def create_type_variations(
+    source_types: List[str], filter_func: Callable[[str], bool], variations: List[str]
+) -> Dict[str, str]:
+    filtered_types = [source_type for source_type in source_types if filter_func(source_type)]
+    return {
+        f"{source_type}{variation}": f"{source_type.lower()}{variation}[pyarrow]"
+        for source_type in filtered_types
+        for variation in variations
+    }
 
-    @property
-    def all_ints(self) -> Dict[str, str]:
-        return {
-            f"{source_type}{var}": f"{source_type.lower()}{var}[pyarrow]"
-            for source_type in self.source_types
-            for var in self.variations
-        }
 
-    @property
-    def all_floats(self) -> Dict[str, str]:
-        return {
-            f"{source_type}{var}": f"{source_type.lower()}{var}[pyarrow]"
-            for source_type in self.source_types
-            for var in self.variations
-        }
-
-    def __call__(
-        self,
-    ) -> Dict[str, str]:
-        all_combinations = {**self.all_ints, **self.all_floats}
-        return all_combinations
+def numeric_mapper(source_types: List[str], variations: List[str]) -> Dict[str, str]:
+    all_ints = create_type_variations(source_types, lambda x: "int" in x.lower(), variations)
+    all_floats = create_type_variations(source_types, lambda x: "float" in x.lower(), variations)
+    all_combinations = {**all_ints, **all_floats}
+    return all_combinations

@@ -1,43 +1,14 @@
-import dataclasses
-from typing import Dict, List
+from typing import Dict
 
 import pytz
 
 
-@dataclasses.dataclass
-class DateTimeMapper:
-    source_type: str = "datetime64"
-    target_type: str = "timestamp"
-    symmetric: bool = True
-
-    @property
-    def timezones(self) -> List[str]:
-        return pytz.all_timezones
-
-    @property
-    def time_resolutions(self) -> List[str]:
-        return ["ns", "ms", "us"]
-
-    @property
-    def all_time_res_combs(self) -> Dict[str, str]:
-        return {f"{self.source_type}[{res}]": f"{self.target_type}[{res}][pyarrow]" for res in self.time_resolutions}
-
-    @property
-    def all_time_res_tz_combs(self) -> Dict[str, str]:
-        if not self.symmetric:
-            return {
-                f"{self.source_type}[{res}, {tz}]": f"{self.target_type}[{res}, {tz}][pyarrow]"
-                for res in self.time_resolutions
-                for tz in self.timezones
-            }
-        return {
-            f"{self.source_type}[{res}, {tz}]": f"{self.target_type}[{res}][pyarrow]"
-            for res in self.time_resolutions
-            for tz in self.timezones
-        }
-
-    def __call__(
-        self,
-    ) -> Dict[str, str]:
-        all_combinations = {**self.all_time_res_combs, **self.all_time_res_tz_combs}
-        return all_combinations
+def datetime_mapper(from_type: str = "datetime64", to_type: str = "timestamp") -> Dict[str, str]:
+    time_zones = pytz.all_timezones
+    time_resolutions = ["ns", "ms", "us"]
+    all_combinations = {f"{from_type}[{res}]": f"{to_type}[{res}][pyarrow]" for res in time_resolutions}
+    all_tz_combinations = {
+        f"{from_type}[{res}, {tz}]": f"{to_type}[{res}, {tz}][pyarrow]" for res in time_resolutions for tz in time_zones
+    }
+    all_combinations.update(all_tz_combinations)
+    return all_combinations
