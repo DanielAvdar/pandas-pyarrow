@@ -17,3 +17,4 @@ def test_dtypes_hp(df):
     ), "Some dtypes are not converted"
     assert not df.equals(adf), "The original df has been modified"
     assert df.equals(df_copy), "The original df has been modified"
+    assert adf.equals(sa(df)), "The conversion is not idempotent"

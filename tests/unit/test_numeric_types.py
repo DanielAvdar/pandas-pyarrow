@@ -43,6 +43,11 @@ from parametrization import Parametrization
     df_data=pd.DataFrame({"test_column": [1.0, 2.0, 3.0, None]}, dtype="float32"),
     expected_dtype="float32[pyarrow]",
 )
+@Parametrization.case(
+    name="float32 case",
+    df_data=pd.DataFrame({"test_column": [1.0, 2.0, 3.0, None]}, dtype="float32[pyarrow]"),
+    expected_dtype="float32[pyarrow]",
+)
 def test_numeric_types(df_data, expected_dtype):
     sa = PandasArrowConverter()
     adf = sa(df_data)
