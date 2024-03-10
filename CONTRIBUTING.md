@@ -1,5 +1,5 @@
 # Contribution Guidelines
-Thank you for your interest in contributing to SchemArrow.
+Thank you for your interest in contributing to pandas-pyarrow.
 
 ## Prerequisites
 Before you start, make sure you have **poetry** installed on your machine. You can install it with this command:
