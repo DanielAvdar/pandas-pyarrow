@@ -1,34 +1,31 @@
-
-
-
-
-# SchemArrow
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/SchemArrow)](https://pypi.org/project/SchemArrow/)
-[![version](https://img.shields.io/pypi/v/SchemArrow)](https://img.shields.io/pypi/v/SchemArrow)
+# pandas-pyarrow
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pandas-arrow)](https://pypi.org/project/pandas-arrow/)
+[![version](https://img.shields.io/pypi/v/pandas-arrow)](https://img.shields.io/pypi/v/pandas-arrow)
 [![License](https://img.shields.io/:license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 ![OS](https://img.shields.io/badge/ubuntu-blue?logo=ubuntu)
 ![OS](https://img.shields.io/badge/win-blue?logo=windows)
 ![OS](https://img.shields.io/badge/mac-blue?logo=apple)
-[![Tests](https://github.com/DanielAvdar/SchemArrow/actions/workflows/ci.yml/badge.svg)](https://github.com/DanielAvdar/SchemArrow/actions/workflows/ci.yml)
-[![Code Checks](https://github.com/DanielAvdar/SchemArrow/actions/workflows/code-checks.yml/badge.svg)](https://github.com/DanielAvdar/SchemArrow/actions/workflows/code-checks.yml)
-[![codecov](https://codecov.io/gh/DanielAvdar/SchemArrow/graph/badge.svg?token=N0V9KANTG2)](https://codecov.io/gh/DanielAvdar/SchemArrow)
+[![Tests](https://github.com/DanielAvdar/pandas-arrow/actions/workflows/ci.yml/badge.svg)](https://github.com/DanielAvdar/pandas-arrow/actions/workflows/ci.yml)
+[![Code Checks](https://github.com/DanielAvdar/pandas-arrow/actions/workflows/code-checks.yml/badge.svg)](https://github.com/DanielAvdar/pandas-arrow/actions/workflows/code-checks.yml)
+[![codecov](https://codecov.io/gh/DanielAvdar/pandas-arrow/graph/badge.svg?token=N0V9KANTG2)](https://codecov.io/gh/DanielAvdar/pandas-arrow)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
-`SchemArrow` simplifies the conversion between pandas and Arrow DataFrames, allowing seamlessly switch to pyarrow pandas backend.
+`pandas-pyarrow` simplifies the conversion of pandas backend to pyarrow, allowing seamlessly switch to pyarrow pandas backend.
+
 
 ## Get started:
 ### Installation
 To install the package use pip:
 
 ```bash
-pip install schemarrow
+pip install pandas_pyarrow
 ```
 ### Usage
 
 ```python
 import pandas as pd
 
-from schemarrow import SchemArrow
+from pandas_pyarrow import PandasArrowConverter
 
 # Create a pandas DataFrame
 df = pd.DataFrame({
@@ -38,11 +35,11 @@ df = pd.DataFrame({
     'D': [True, False, True]
 })
 
-# Instantiate a SchemArrow object
-arrow_schema = SchemArrow()
+# Instantiate a PandasArrowConverter object
+pandas_pyarrow_converter = PandasArrowConverter()
 
 # Convert the pandas DataFrame dtypes to arrow dtypes
-adf: pd.DataFrame = arrow_schema(df)
+adf: pd.DataFrame = pandas_pyarrow_converter(df)
 
 print(adf.dtypes)
 ```
@@ -61,7 +58,7 @@ Furthermore, it's possible to add mappings or override existing ones:
 ```python
 import pandas as pd
 
-from schemarrow import SchemArrow
+from pandas_pyarrow import PandasArrowConverter
 
 # Create a pandas DataFrame
 df = pd.DataFrame({
@@ -71,11 +68,11 @@ df = pd.DataFrame({
     'D': [True, False, True]
 })
 
-# Instantiate a SchemArrow object
-arrow_schema = SchemArrow(custom_mapper={'int64': 'int32[pyarrow]', 'float64': 'float32[pyarrow]'})
+# Instantiate a PandasArrowConverter object
+pandas_pyarrow_converter = PandasArrowConverter(custom_mapper={'int64': 'int32[pyarrow]', 'float64': 'float32[pyarrow]'})
 
 # Convert the pandas DataFrame dtypes to arrow dtypes
-adf: pd.DataFrame = arrow_schema(df)
+adf: pd.DataFrame = pandas_pyarrow_converter(df)
 
 print(adf.dtypes)
 ```
@@ -89,14 +86,15 @@ dtype: object
 ```
 
 
-SchmeArrow also support db-dtypes used by bigquery python sdk:
+pandas-pyarrow also support db-dtypes used by bigquery python sdk:
 ```bash
 pip install pandas-gbq
 ```
+
 ```python
 import pandas_gbq as gbq
 
-from schemarrow.schema_arrow import SchemArrow
+from pandas_pyarrow import PandasArrowConverter
 
 # Specify the public dataset and table you want to query
 dataset_id = "bigquery-public-data"
@@ -109,8 +107,8 @@ query = """
 
 # Use pandas_gbq to read the data from BigQuery
 df = gbq.read_gbq(query)
-schema_arrow = SchemArrow()
-adf = schema_arrow(df)
+pandas_pyarrow_converter = PandasArrowConverter()
+adf = pandas_pyarrow_converter(df)
 # Print the retrieved data
 print(df.dtypes)
 print(adf.dtypes)

@@ -3,8 +3,8 @@
 #
 # import hypothesis as hp
 #
-# from schemarrow import SchemArrow
-# from schemarrow.mappers import DateTimeMapper
+# from pandas_pyarrow import SchemArrow
+# from pandas_pyarrow.mappers import DateTimeMapper
 # from tests.unit.property_based.pb_sts import single_column_df_st
 #
 #

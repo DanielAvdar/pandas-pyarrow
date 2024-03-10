@@ -1,4 +1,4 @@
-from schemarrow.schema_arrow import SchemArrow
+from pandas_pyarrow.pda_converter import PandasArrowConverter
 from tests.unit.property_based.pb_sts import df_st
 
 import hypothesis as hp
@@ -8,7 +8,7 @@ import hypothesis as hp
 @hp.settings(max_examples=500)
 def test_dtypes_hp(df):
     df_copy = df.copy()
-    sa = SchemArrow()
+    sa = PandasArrowConverter()
     adf = sa(df)
 
     new_dtypes_names = [repr(i) for i in adf.dtypes.tolist()]
