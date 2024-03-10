@@ -1,6 +1,6 @@
 from typing import Dict, List, Optional
 
-from pandas_pyarrow.mappers import create_mapper
+from .mappers import create_mapper
 
 import pandas as pd
 
