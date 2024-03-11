@@ -9,12 +9,12 @@ from pytz import timezone
 
 @Parametrization.autodetect_parameters()
 @Parametrization.case(
-    name="datetime case",
+    name="Test Case: Datetime",
     df_data=pd.DataFrame({"test_column": [datetime.now(), None]}, dtype="datetime64[ns]"),
     expected_dtype="timestamp[ns][pyarrow]",
 )
 @Parametrization.case(
-    name="datetime ms case",
+    name="Test Case: Datetime Milliseconds",
     df_data=pd.DataFrame({"test_column": [datetime.now(), None]}, dtype="datetime64[ms]"),
     expected_dtype="timestamp[ms][pyarrow]",
 )
@@ -26,7 +26,7 @@ def test_dt_types(df_data, expected_dtype):
 
 
 @Parametrization.case(
-    name="datetime timezone case",
+    name="Test Case: Datetime with Timezone",
     data=dict(
         data={"test_column": [datetime.now(timezone("US/Eastern")), None]},
         dtype="datetime64[ns, US/Eastern]",
@@ -34,7 +34,7 @@ def test_dt_types(df_data, expected_dtype):
     expected_dtype="timestamp[ns, tz=US/Eastern][pyarrow]",
 )
 @Parametrization.case(
-    name="datetime timezone case UTC",
+    name="Test Case: Datetime with UTC Timezone",
     data=dict(
         data={"test_column": [datetime.now(timezone("UTC")), None]},
         dtype="datetime64[ns, UTC]",
@@ -51,27 +51,27 @@ def test_dt_tz_types(data, expected_dtype):
 
 @Parametrization.autodetect_parameters()
 @Parametrization.case(
-    name="timedelta case",
+    name="Test Case: Timedelta",
     df_data=pd.DataFrame({"test_column": [pd.Timedelta("1 days"), None]}, dtype="timedelta64[ns]"),
     expected_dtype="duration[ns][pyarrow]",
 )
 @Parametrization.case(
-    name="timedelta hours case",
+    name="Test Case: Timedelta in Hours",
     df_data=pd.DataFrame({"test_column": [pd.Timedelta("5 hours"), None]}, dtype="timedelta64[ns]"),
     expected_dtype="duration[ns][pyarrow]",
 )
 @Parametrization.case(
-    name="timedelta minutes case",
+    name="Test Case: Timedelta in Minutes",
     df_data=pd.DataFrame({"test_column": [pd.Timedelta("30 minutes"), None]}, dtype="timedelta64[ns]"),
     expected_dtype="duration[ns][pyarrow]",
 )
 @Parametrization.case(
-    name="timedelta minutes in ms case",
+    name="Test Case: Timedelta Minutes in Milliseconds",
     df_data=pd.DataFrame({"test_column": [pd.Timedelta("30 minutes"), None]}, dtype="timedelta64[ms]"),
     expected_dtype="duration[ms][pyarrow]",
 )
 @Parametrization.case(
-    name="timedelta minutes timezone case",
+    name="Test Case: Timedelta Minutes with Timezone",
     df_data=pd.DataFrame({"test_column": [pd.Timedelta("30 minutes"), None]}, dtype="timedelta64[ns]"),
     expected_dtype="duration[ns][pyarrow]",
 )
