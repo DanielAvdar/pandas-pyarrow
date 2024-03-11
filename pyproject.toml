@@ -26,7 +26,6 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: Scientific/Engineering :: Information Analysis",
     "Topic :: Utilities",
-    "Topic :: Tabular Data",
 ]
 keywords = [
     "python",
