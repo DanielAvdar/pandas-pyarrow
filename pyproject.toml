@@ -43,15 +43,16 @@ packages = [{ include = "pandas_pyarrow", from = "." }]
 python = ">=3.9,<3.13"
 pandas = ">=2"
 pyarrow = ">=7.0.0, <=15.0.0"
-db-dtypes = { extras = ["db-dtypes"], version = ">=1" }
-pandas-gbq = { extras = ["bigquery"], version = ">=0.15.0", optional = true }
+db-dtypes = { version = ">=1", optional = true }
+pandas-gbq = { version = ">=0.15.0", optional = true }
 
 [tool.poetry.dev-dependencies]
-pytest = ">= 7.1.2"
-hypothesis = ">= 6.23.3"
-pre-commit = ">= 2.20.0"
-pytest-cov = ">= 4.0.0"
-mypy = ">= 0.991"
+db-dtypes = ">=1"
+pytest = ">=7.1.2"
+hypothesis = ">=6.23.3"
+pre-commit = ">=2.20.0"
+pytest-cov = ">=4.0.0"
+mypy = ">=0.991"
 pytest-parametrization = "^2022"
 types-pytz = "*"
 pandas-stubs = "*"
@@ -59,7 +60,7 @@ ruff = "^0.3.1"
 
 [tool.poetry.extras]
 db-dtypes = ["db-dtypes"]
-pandas-gbq = ["bigquery"]
+bigquery = ["pandas-gbq"]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -71,12 +72,12 @@ include = ["pyproject.toml", "tests/**", "pandas_pyarrow/**", ]
 
 [tool.ruff.lint]
 select = ["F", "B", "I", "F", "W", "E", "A", "N"]
-
 fixable = ["ALL"]
 
 [tool.ruff.lint.isort]
 combine-as-imports = true
 section-order = ["future", "standard-library", "first-party", "local-folder", "third-party", ]
+
 [tool.mypy]
 python_version = "3.11"
 disallow_untyped_defs = true
@@ -84,7 +85,6 @@ check_untyped_defs = true
 warn_redundant_casts = true
 warn_unused_ignores = true
 strict_optional = false
-
 
 [[tool.mypy.overrides]]
 module = "tests.*"
