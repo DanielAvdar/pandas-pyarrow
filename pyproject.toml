@@ -60,7 +60,7 @@ ruff = "^0.3.1"
 
 [tool.poetry.extras]
 db-dtypes = ["db-dtypes"]
-pandas-gbq = ["bigquery"]
+bigquery = ["pandas-gbq"]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
