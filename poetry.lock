@@ -1337,9 +1337,9 @@ test = ["covdefaults (>=2.3)", "coverage (>=7.2.7)", "coverage-enable-subprocess
 
 [extras]
 db-dtypes = ["db-dtypes"]
-pandas-gbq = ["pandas-gbq"]
+pandas-gbq = []
 
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.13"
-content-hash = "957fa4827b2d043a36b1e643a3aa1107d6f142a4c59a64f3a96de9a4628da7cb"
+content-hash = "e0e9ce93afc8ef5eb5c6934ca41478fce852c2b72ea609e6f7a7d6787c88f7ca"

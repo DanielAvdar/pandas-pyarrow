@@ -87,6 +87,9 @@ pandas-pyarrow also support db-dtypes used by bigquery python sdk:
 ```bash
 pip install pandas-gbq
 ```
+or
+```bash
+pip install pandas-pyarrow[bigquery]
 
 ```python
 import pandas_gbq as gbq
