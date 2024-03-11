@@ -5,6 +5,7 @@ on:
       - 'pandas_pyarrow/**'
       - 'tests/**'
       - '.github/workflows/ci.yml'
+      - 'pyproject.toml'
   workflow_dispatch:
 jobs:
   tests:
@@ -36,6 +37,7 @@ jobs:
           python-version: '3.11'
           cache: poetry
       - run: poetry install
+      - run: poetry check
       - run: poetry run pytest --cov=pandas_pyarrow --cov-report=xml
       - uses: codecov/codecov-action@v2
         with:
