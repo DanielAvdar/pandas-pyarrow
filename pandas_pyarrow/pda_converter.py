@@ -1,19 +1,19 @@
 from typing import Dict, List, Optional
 
-from pandas_pyarrow.mappers import create_mapper
+from .mappers import create_mapper
 
 import pandas as pd
 
 
 class PandasArrowConverter:
-    """SchemArrow manages the conversion of Pandas DataFrame data types to Arrow data types.
+    """PandasArrowConverter manages the conversion of Pandas DataFrame data types to Arrow data types.
 
-    :param parquet_compatible: if True, columns names will be converted to parquet compatible names. Default is False.
+    :param parquet_compatible: if True, column names will be converted to parquet compatible names. Default is False.
     **disclaimer**: not yet implemented
     :param custom_mapper: dictionary with key as the source data type and value as the target data type.
-    will override default mapping
+    Will override default mapping
     :param default_target_type: Optional string specifying the default data type to use if no mapping is found for a
-     specific data type. Default is "string[pyarrow]".
+    specific data type. Default is "string[pyarrow]".
 
     Methods
     -------
@@ -41,6 +41,8 @@ class PandasArrowConverter:
     def _target_dtype_name(self, dtype_name: str) -> str:
         type_mapper = self._mapper
         defaults_dtype = self.defaults_dtype or dtype_name
+        if "[pyarrow]" in dtype_name:
+            return dtype_name
         return type_mapper.get(dtype_name, defaults_dtype)
 
     def _map_dtype_names(self, dtype_names: List[str]) -> List[str]:

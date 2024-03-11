@@ -12,8 +12,8 @@ def test_dtypes_hp(df):
     adf = sa(df)
 
     new_dtypes_names = [repr(i) for i in adf.dtypes.tolist()]
-    assert all(
-        ["[pyarrow]" in dtype in new_dtypes_names for dtype in new_dtypes_names]
-    ), "Some dtypes are not converted"
+    is_arrows = ["[pyarrow]" in dtype for dtype in new_dtypes_names]
+    assert all(is_arrows), "Some dtypes are not converted"
     assert not df.equals(adf), "The original df has been modified"
     assert df.equals(df_copy), "The original df has been modified"
+    assert adf.equals(sa(adf)), "The conversion is not idempotent"

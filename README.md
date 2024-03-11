@@ -1,4 +1,5 @@
 # pandas-pyarrow
+
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pandas-pyarrow)](https://pypi.org/project/pandas-pyarrow/)
 [![version](https://img.shields.io/pypi/v/pandas-pyarrow)](https://img.shields.io/pypi/v/pandas-pyarrow)
 [![License](https://img.shields.io/:license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
@@ -10,22 +11,25 @@
 [![codecov](https://codecov.io/gh/DanielAvdar/pandas-pyarrow/graph/badge.svg?token=N0V9KANTG2)](https://codecov.io/gh/DanielAvdar/pandas-pyarrow)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
-`pandas-pyarrow` simplifies the conversion of pandas backend to pyarrow, allowing seamlessly switch to pyarrow pandas backend.
-
+`pandas-pyarrow` simplifies the conversion of pandas backend to pyarrow, allowing seamlessly switch to pyarrow pandas
+backend.
 
 ## Get started:
+
 ### Installation
+
 To install the package use pip:
 
 ```bash
 pip install pandas-pyarrow
 ```
+
 ### Usage
 
 ```python
 import pandas as pd
 
-from pandas_pyarrow import PandasArrowConverter
+from pandas_pyarrow import convert_to_pyarrow
 
 # Create a pandas DataFrame
 df = pd.DataFrame({
@@ -35,15 +39,14 @@ df = pd.DataFrame({
     'D': [True, False, True]
 })
 
-# Instantiate a PandasArrowConverter object
-pandas_pyarrow_converter = PandasArrowConverter()
-
 # Convert the pandas DataFrame dtypes to arrow dtypes
-adf: pd.DataFrame = pandas_pyarrow_converter(df)
+adf: pd.DataFrame = convert_to_pyarrow(df)
 
 print(adf.dtypes)
 ```
+
 outputs:
+
 ```
 A     int64[pyarrow]
 B    string[pyarrow]
@@ -51,7 +54,6 @@ C    double[pyarrow]
 D      bool[pyarrow]
 dtype: object
 ```
-
 
 Furthermore, it's possible to add mappings or override existing ones:
 
@@ -69,14 +71,17 @@ df = pd.DataFrame({
 })
 
 # Instantiate a PandasArrowConverter object
-pandas_pyarrow_converter = PandasArrowConverter(custom_mapper={'int64': 'int32[pyarrow]', 'float64': 'float32[pyarrow]'})
+pandas_pyarrow_converter = PandasArrowConverter(
+    custom_mapper={'int64': 'int32[pyarrow]', 'float64': 'float32[pyarrow]'})
 
 # Convert the pandas DataFrame dtypes to arrow dtypes
 adf: pd.DataFrame = pandas_pyarrow_converter(df)
 
 print(adf.dtypes)
 ```
+
 outputs:
+
 ```
 A     int32[pyarrow]
 B    string[pyarrow]
@@ -85,10 +90,16 @@ D      bool[pyarrow]
 dtype: object
 ```
 
-
 pandas-pyarrow also support db-dtypes used by bigquery python sdk:
+
 ```bash
 pip install pandas-gbq
+```
+
+or
+
+```bash
+pip install pandas-pyarrow[bigquery]
 ```
 
 ```python
@@ -113,7 +124,9 @@ adf = pandas_pyarrow_converter(df)
 print(df.dtypes)
 print(adf.dtypes)
 ```
+
 outputs:
+
 ```
 unique_key                               object
 complaint_description                    object
@@ -164,9 +177,12 @@ dtype: object
 ```
 
 ## Purposes
+
 - Simplify the conversion between pandas pyarrow and numpy backends.
 - Allow seamlessly switch to pyarrow pandas backend.
 - dtype standardization for db-dtypes used by bigquery python sdk.
+
 ## Additional Information
+
 When converting from higher precision numerical dtypes (like float64) to
 lower precision (like float32), data precision might be compromised.
