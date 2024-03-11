@@ -498,13 +498,13 @@ requests = ["requests (>=2.18.0,<3.0.0dev)"]
 
 [[package]]
 name = "googleapis-common-protos"
-version = "1.62.0"
+version = "1.63.0"
 description = "Common protobufs used in Google APIs"
 optional = true
 python-versions = ">=3.7"
 files = [
-    {file = "googleapis-common-protos-1.62.0.tar.gz", hash = "sha256:83f0ece9f94e5672cced82f592d2a5edf527a96ed1794f0bab36d5735c996277"},
-    {file = "googleapis_common_protos-1.62.0-py2.py3-none-any.whl", hash = "sha256:4750113612205514f9f6aa4cb00d523a94f3e8c06c5ad2fee466387dc4875f07"},
+    {file = "googleapis-common-protos-1.63.0.tar.gz", hash = "sha256:17ad01b11d5f1d0171c06d3ba5c04c54474e883b66b949722b4938ee2694ef4e"},
+    {file = "googleapis_common_protos-1.63.0-py2.py3-none-any.whl", hash = "sha256:ae45f75702f7c08b541f750854a678bd8f534a1a6bace6afe975f1d0a82d6632"},
 ]
 
 [package.dependencies]
@@ -1342,4 +1342,4 @@ pandas-gbq = []
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.13"
-content-hash = "e0e9ce93afc8ef5eb5c6934ca41478fce852c2b72ea609e6f7a7d6787c88f7ca"
+content-hash = "d1ded96d5e402da566481507803d674b892ae118f8cd6592ab1f51fd76b5ea51"
