@@ -41,6 +41,8 @@ class PandasArrowConverter:
     def _target_dtype_name(self, dtype_name: str) -> str:
         type_mapper = self._mapper
         defaults_dtype = self.defaults_dtype or dtype_name
+        if "[pyarrow]" in dtype_name:
+            return dtype_name
         return type_mapper.get(dtype_name, defaults_dtype)
 
     def _map_dtype_names(self, dtype_names: List[str]) -> List[str]:
