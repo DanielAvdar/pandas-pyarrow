@@ -25,7 +25,7 @@ pip install pandas-pyarrow
 ```python
 import pandas as pd
 
-from pandas_pyarrow import PandasArrowConverter
+from pandas_pyarrow import convert_to_pyarrow
 
 # Create a pandas DataFrame
 df = pd.DataFrame({
@@ -35,11 +35,8 @@ df = pd.DataFrame({
     'D': [True, False, True]
 })
 
-# Instantiate a PandasArrowConverter object
-pandas_pyarrow_converter = PandasArrowConverter()
-
 # Convert the pandas DataFrame dtypes to arrow dtypes
-adf: pd.DataFrame = pandas_pyarrow_converter(df)
+adf: pd.DataFrame = convert_to_pyarrow(df)
 
 print(adf.dtypes)
 ```
