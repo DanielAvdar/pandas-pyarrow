@@ -1,9 +1,9 @@
 from typing import Dict
 
-from pandas_pyarrow.mappers.datetime_mapper import datetime_mapper
-from pandas_pyarrow.mappers.db_types import mapper_db_types
-from pandas_pyarrow.mappers.dtype_mapper import mapper_dict_dt, mapper_dict_object
-from pandas_pyarrow.mappers.numeric_mapper import numeric_mapper
+from .datetime_mapper import datetime_mapper
+from .db_types import mapper_db_types
+from .dtype_mapper import mapper_dict_dt, mapper_dict_object
+from .numeric_mapper import numeric_mapper
 
 
 def create_mapper() -> Dict[str, str]:
