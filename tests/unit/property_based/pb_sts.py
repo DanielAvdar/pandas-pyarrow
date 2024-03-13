@@ -5,28 +5,31 @@ from hypothesis import strategies as st
 from hypothesis.extra.pandas import columns, data_frames, range_indexes
 from hypothesis.strategies import composite
 
-# Introduced constants
-DTYPES_SAMPLE: List[Union[type, str]] = [
-    int,
-    float,
+# Dtype convertable to pyarrow via pandas api
+COMMON_DTYPES_SAMPLE: List[Union[type, str]] = [
     bool,
     str,
+    int,
     "datetime64[ns]",
     "timedelta64[ns]",
     "int8",
     "int16",
     "int32",
     "int64",
+    "uint8",
+    "uint16",
+    "uint32",
+    "uint64",
+]
+# Dtype not convertable to pyarrow via pandas api (pyarrow.lib.ArrowNotImplementedError)
+UNCOMMON_DTYPES_SAMPLE: List[Union[type, str]] = [
+    float,
     "float16",
     "float32",
     "float64",
+    "complex64",
+    "complex128",
 ]
-
-
-@composite
-def dtypes_st(draw: Any) -> Any:
-    dtypes = st.sampled_from(DTYPES_SAMPLE)
-    return draw(dtypes)
 
 
 def create_dataframe(draw: Any, gen_type: str) -> pd.DataFrame:
@@ -46,13 +49,13 @@ def create_dataframe(draw: Any, gen_type: str) -> pd.DataFrame:
 
 
 @composite
-def df_st(draw: Any) -> pd.DataFrame:
+def df_st(draw: Any, dtypes: List[Any]) -> pd.DataFrame:
     col_names = draw(st.sets(st.text(min_size=1, max_size=10), min_size=2, max_size=5))
 
     dfs_st = data_frames(
         columns=columns(
             col_names,
-            dtype=draw(st.sampled_from(DTYPES_SAMPLE)),
+            dtype=draw(st.sampled_from(dtypes)),
         ),
         index=range_indexes(
             min_size=2,

@@ -11,6 +11,7 @@ def create_mapper() -> Dict[str, str]:
         **numeric_mapper(["float"], ["16", "32", "64"]),
         **numeric_mapper(["int"], ["8", "16", "32", "64"]),
         **numeric_mapper(["Float", "Int"], ["32", "64"]),
+        **numeric_mapper(["uint"], ["8", "16", "32", "64"]),
         **datetime_mapper(),
         **mapper_dict_dt,
         **mapper_dict_object,

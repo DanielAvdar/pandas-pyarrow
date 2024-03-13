@@ -179,8 +179,50 @@ dtype: object
 ## Purposes
 
 - Simplify the conversion between pandas pyarrow and numpy backends.
-- Allow seamlessly switch to pyarrow pandas backend.
+- Allow seamlessly switch to pyarrow pandas backend, even for problematic dtypes such float16 or db-dtypes.
 - dtype standardization for db-dtypes used by bigquery python sdk.
+
+
+example:
+
+```python
+import pandas as pd
+
+# Create a pandas DataFrame
+df = pd.DataFrame({
+
+    'C': [1.1, 2.2, 3.3],
+
+}, dtype='float16')
+
+df.convert_dtypes(dtype_backend='pyarrow')
+```
+will raise an error:
+```
+pyarrow.lib.ArrowNotImplementedError: Unsupported cast from halffloat to double using function cast_double
+```
+but with pandas-pyarrow:
+```python
+import pandas as pd
+
+from pandas_pyarrow import convert_to_pyarrow
+
+# Create a pandas DataFrame
+df = pd.DataFrame({
+
+    'C': [1.1, 2.2, 3.3],
+
+}, dtype='float16')
+adf = convert_to_pyarrow(df)
+print(adf.dtypes)
+
+```
+outputs:
+```
+C    halffloat[pyarrow]
+dtype: object
+```
+
 
 ## Additional Information
 
