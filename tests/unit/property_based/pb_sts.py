@@ -7,18 +7,15 @@ from hypothesis.strategies import composite
 
 # Dtype convertable to pyarrow via pandas api
 COMMON_DTYPES_SAMPLE: List[Union[type, str]] = [
-    int,
-    float,
     bool,
     str,
+    int,
     "datetime64[ns]",
     "timedelta64[ns]",
     "int8",
     "int16",
     "int32",
     "int64",
-    "float32",
-    "float64",
     "uint8",
     "uint16",
     "uint32",
@@ -26,16 +23,13 @@ COMMON_DTYPES_SAMPLE: List[Union[type, str]] = [
 ]
 # Dtype not convertable to pyarrow via pandas api (pyarrow.lib.ArrowNotImplementedError)
 UNCOMMON_DTYPES_SAMPLE: List[Union[type, str]] = [
+    float,
     "float16",
+    "float32",
+    "float64",
     "complex64",
     "complex128",
 ]
-
-
-# @composite
-# def dtypes_st(draw: Any) -> Any:
-#     dtypes = st.sampled_from(COMMON_DTYPES_SAMPLE)
-#     return draw(dtypes)
 
 
 def create_dataframe(draw: Any, gen_type: str) -> pd.DataFrame:
