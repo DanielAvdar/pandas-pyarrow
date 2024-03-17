@@ -6,6 +6,7 @@ on:
       - 'tests/**'
       - '.github/workflows/ci.yml'
       - 'pyproject.toml'
+      - 'poetry.lock'
   workflow_dispatch:
 jobs:
   tests:
