@@ -53,10 +53,10 @@ hypothesis = ">=6.23.3"
 pre-commit = ">=2.20.0"
 pytest-cov = ">=4.0.0"
 mypy = ">=0.991"
-pytest-parametrization = "^2022"
-types-pytz = "*"
-pandas-stubs = "*"
-ruff = "^0.3.1"
+pytest-parametrization = ">=2022.2.1"
+types-pytz = ">=2024.1.0.20240203"
+pandas-stubs = ">=2.2.1.240316"
+ruff = ">=0.3.1"
 
 [tool.poetry.extras]
 db-dtypes = ["db-dtypes"]

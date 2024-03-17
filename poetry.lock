@@ -1434,4 +1434,4 @@ db-dtypes = ["db-dtypes"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.13"
-content-hash = "b630bb882be6b7cb00ca3dfd3202d8d539bed5589a853687812f6d49fb0813a1"
+content-hash = "8b8638da252d15bdda081c17cad9d005c884910d17bc8caf5f8c5b3a69bf7443"
