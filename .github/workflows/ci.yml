@@ -18,14 +18,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: pipx install poetry
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
           cache: poetry
 
       - run: poetry install
       - run: poetry run pytest --cov=pandas_pyarrow --cov-report=xml
-      - uses: codecov/codecov-action@v2
+      - uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true
