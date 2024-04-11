@@ -10,19 +10,20 @@ on:
   workflow_dispatch:
 jobs:
   tests:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ ubuntu-latest, macos-latest, windows-latest ]
-        python-version: [ '3.9', '3.10', '3.11', '3.12' ]
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - run: pipx install poetry
       - uses: actions/setup-python@v5
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: '3.11'
           cache: poetry
 
       - run: poetry install
-      - run: poetry run pytest
+      - run: poetry run pytest --cov=pandas_pyarrow --cov-report=xml
+      - uses: codecov/codecov-action@v3
+        with:
+#          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: true
+          verbose: true
     continue-on-error: true
