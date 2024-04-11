@@ -1,4 +1,4 @@
-name: CI
+name: Codecov
 on:
   pull_request:
     paths:
@@ -9,7 +9,7 @@ on:
       - 'poetry.lock'
   workflow_dispatch:
 jobs:
-  tests:
+  upload-coverage-report:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
