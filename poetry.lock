@@ -34,7 +34,7 @@ files = [
 name = "certifi"
 version = "2024.2.2"
 description = "Python package for providing Mozilla's CA Bundle."
-optional = false
+optional = true
 python-versions = ">=3.6"
 files = [
     {file = "certifi-2024.2.2-py3-none-any.whl", hash = "sha256:dc383c07b76109f368f6106eee2b593b04a011ea4d55f652c6ca24a754d1cdd1"},
@@ -56,7 +56,7 @@ files = [
 name = "charset-normalizer"
 version = "3.3.2"
 description = "The Real First Universal Charset Detector. Open, modern and actively maintained alternative to Chardet."
-optional = false
+optional = true
 python-versions = ">=3.7.0"
 files = [
     {file = "charset-normalizer-3.3.2.tar.gz", hash = "sha256:f30c3cb33b24454a82faecaf01b19c18562b1e89558fb6c56de4d9118a032fd5"},
@@ -893,13 +893,13 @@ xml = ["lxml (>=4.9.2)"]
 
 [[package]]
 name = "pandas-gbq"
-version = "0.22.0"
+version = "0.23.0"
 description = "Google BigQuery connector for pandas"
 optional = true
 python-versions = ">=3.8"
 files = [
-    {file = "pandas-gbq-0.22.0.tar.gz", hash = "sha256:3fb24010c96e795c22b35d86601ef76f8aed84d5d17ceb8a4396a354c1949ece"},
-    {file = "pandas_gbq-0.22.0-py2.py3-none-any.whl", hash = "sha256:e3bc1f9903928e4923dc5ff7f29fad9e9799aa406058567f1c654d934bf41323"},
+    {file = "pandas-gbq-0.23.0.tar.gz", hash = "sha256:469b75a2adf6bfc8cd34d9eead9e67a05e0d313f194d702e2ce776f7e6a4c5ee"},
+    {file = "pandas_gbq-0.23.0-py2.py3-none-any.whl", hash = "sha256:7abed31890419360df08a2c7359228999ce9173ef788564c19d5bc29e6e1b720"},
 ]
 
 [package.dependencies]
@@ -1251,7 +1251,7 @@ files = [
 name = "requests"
 version = "2.32.0"
 description = "Python HTTP for Humans."
-optional = false
+optional = true
 python-versions = ">=3.8"
 files = [
     {file = "requests-2.32.0-py3-none-any.whl", hash = "sha256:f2c3881dddb70d056c5bd7600a4fae312b2a300e39be6a118d30b90bd27262b5"},
@@ -1412,7 +1412,7 @@ files = [
 name = "urllib3"
 version = "2.2.1"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
-optional = false
+optional = true
 python-versions = ">=3.8"
 files = [
     {file = "urllib3-2.2.1-py3-none-any.whl", hash = "sha256:450b20ec296a467077128bff42b73080516e71b56ff59a60a02bef2232c4fa9d"},
