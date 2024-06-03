@@ -34,7 +34,7 @@ files = [
 name = "certifi"
 version = "2024.2.2"
 description = "Python package for providing Mozilla's CA Bundle."
-optional = false
+optional = true
 python-versions = ">=3.6"
 files = [
     {file = "certifi-2024.2.2-py3-none-any.whl", hash = "sha256:dc383c07b76109f368f6106eee2b593b04a011ea4d55f652c6ca24a754d1cdd1"},
@@ -56,7 +56,7 @@ files = [
 name = "charset-normalizer"
 version = "3.3.2"
 description = "The Real First Universal Charset Detector. Open, modern and actively maintained alternative to Chardet."
-optional = false
+optional = true
 python-versions = ">=3.7.0"
 files = [
     {file = "charset-normalizer-3.3.2.tar.gz", hash = "sha256:f30c3cb33b24454a82faecaf01b19c18562b1e89558fb6c56de4d9118a032fd5"},
@@ -921,13 +921,13 @@ tqdm = ["tqdm (>=4.23.0)"]
 
 [[package]]
 name = "pandas-stubs"
-version = "2.2.1.240316"
+version = "2.2.2.240514"
 description = "Type annotations for pandas"
 optional = false
 python-versions = ">=3.9"
 files = [
-    {file = "pandas_stubs-2.2.1.240316-py3-none-any.whl", hash = "sha256:0126a26451a37cb893ea62357ca87ba3d181bd999ec8ba2ca5602e20207d6682"},
-    {file = "pandas_stubs-2.2.1.240316.tar.gz", hash = "sha256:236a4f812fb6b1922e9607ff09e427f6d8540c421c9e5a40e3e4ddf7adac7f05"},
+    {file = "pandas_stubs-2.2.2.240514-py3-none-any.whl", hash = "sha256:5d6f64d45a98bc94152a0f76fa648e598cd2b9ba72302fd34602479f0c391a53"},
+    {file = "pandas_stubs-2.2.2.240514.tar.gz", hash = "sha256:85b20da44a62c80eb8389bcf4cbfe31cce1cafa8cca4bf1fc75ec45892e72ce8"},
 ]
 
 [package.dependencies]
@@ -1251,7 +1251,7 @@ files = [
 name = "requests"
 version = "2.32.0"
 description = "Python HTTP for Humans."
-optional = false
+optional = true
 python-versions = ">=3.8"
 files = [
     {file = "requests-2.32.0-py3-none-any.whl", hash = "sha256:f2c3881dddb70d056c5bd7600a4fae312b2a300e39be6a118d30b90bd27262b5"},
@@ -1412,7 +1412,7 @@ files = [
 name = "urllib3"
 version = "2.2.1"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
-optional = false
+optional = true
 python-versions = ">=3.8"
 files = [
     {file = "urllib3-2.2.1-py3-none-any.whl", hash = "sha256:450b20ec296a467077128bff42b73080516e71b56ff59a60a02bef2232c4fa9d"},
