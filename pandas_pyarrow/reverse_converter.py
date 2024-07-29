@@ -14,4 +14,6 @@ def convert_to_numpy(df: pd.DataFrame) -> pd.DataFrame:
         elif repr(dtype).startswith("duration"):
             td_format = "[" + repr(dtype).split("[")[1]
             df_[col] = df_[col].values.astype(f"timedelta64{td_format}")
+        elif repr(dtype).startswith("string"):
+            df_[col] = df_[col].values.astype("object")
     return df_.convert_dtypes()
