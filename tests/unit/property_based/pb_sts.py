@@ -79,5 +79,9 @@ def single_column_df_st(
     pair: Tuple[str, str] = draw(st.sampled_from(list(pair_mapping.items())))
     source_dtype_name, target_dtype_name = pair
     df = create_dataframe(draw, gen_type or source_dtype_name.lower())
+    with_tz = ", " in source_dtype_name
+    if with_tz:
+        col = df.columns[0]
+        df[col] = df[col].dt.tz_localize("UTC")
     df: pd.DataFrame = df.astype(source_dtype_name)
     return df, target_dtype_name
