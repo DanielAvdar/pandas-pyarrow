@@ -4,9 +4,8 @@ on:
     paths:
       - 'pandas_pyarrow/**'
       - 'tests/**'
-      - '.github/workflows/ci.yml'
-      - 'pyproject.toml'
-      - 'poetry.lock'
+      - '.github/workflows/codecov.yml'
+
   workflow_dispatch:
 jobs:
   upload-coverage-report:
