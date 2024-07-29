@@ -1,5 +1,4 @@
-from pandas_pyarrow import convert_to_pyarrow
-from pandas_pyarrow.reverse_converter import convert_to_numpy
+from pandas_pyarrow import convert_to_numpy, convert_to_pyarrow
 from tests.unit.property_based.pb_sts import COMMON_DTYPES_SAMPLE, UNCOMMON_DTYPES_SAMPLE, df_st
 
 import hypothesis as hp
