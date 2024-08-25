@@ -1,17 +1,14 @@
 name: Auto-merge Dependabot PRs
 
 on:
-  pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
-      - completed
+  check_suite:
+    types: [completed]
 
 jobs:
   auto-merge:
+
     runs-on: ubuntu-latest
-    if: github.actor == 'dependabot[bot]' && github.event.check_suite.conclusion == 'success'
+    if: github.actor == 'dependabot[bot]'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
