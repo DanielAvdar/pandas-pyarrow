@@ -9,7 +9,7 @@ def convert_to_numpy(df: pd.DataFrame) -> pd.DataFrame:
         if repr(dtype).startswith("timestamp"):
             dt_format = "[" + repr(dtype).split("[")[1]
             df_[col] = df_[col].values.astype(f"datetime64{dt_format}")
-        elif repr(dtype) == "halffloat[pyarrow]":
+        elif repr(dtype).startswith("halffloat"):
             df_[col] = df_[col].values.astype("float16")
         elif repr(dtype).startswith("duration"):
             td_format = "[" + repr(dtype).split("[")[1]
