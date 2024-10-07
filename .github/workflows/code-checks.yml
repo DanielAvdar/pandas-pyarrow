@@ -2,6 +2,11 @@ name: Code Quality
 
 on:
   pull_request:
+    paths:
+      - 'pandas_pyarrow/**'
+      - 'tests/**'
+      - '.github/workflows/code-checks.yml'
+
   workflow_dispatch:
 jobs:
   lint:
