@@ -909,13 +909,13 @@ xml = ["lxml (>=4.9.2)"]
 
 [[package]]
 name = "pandas-gbq"
-version = "0.23.2"
+version = "0.24.0"
 description = "Google BigQuery connector for pandas"
 optional = true
 python-versions = ">=3.8"
 files = [
-    {file = "pandas_gbq-0.23.2-py2.py3-none-any.whl", hash = "sha256:8ea300cb337b1f738896bcd881d611cd95d03c6c83a34eef2d4c8af050f704d5"},
-    {file = "pandas_gbq-0.23.2.tar.gz", hash = "sha256:18a67db0ea3390c362cb8e276769335d128ec8739c1d0814ab5b6fdf3903fd87"},
+    {file = "pandas_gbq-0.24.0-py2.py3-none-any.whl", hash = "sha256:e3e39f4fd8651ced033515e5e63a6c19bc757b26155fac01c4367e1aa74ee122"},
+    {file = "pandas_gbq-0.24.0.tar.gz", hash = "sha256:264415277059821497e74ed0b2240b538cba9646ee627fb4668cac5cf274e4c3"},
 ]
 
 [package.dependencies]
@@ -927,12 +927,13 @@ google-cloud-bigquery = ">=3.4.2,<4.0.0dev"
 numpy = ">=1.18.1"
 packaging = ">=22.0.0"
 pandas = ">=1.1.4"
-pyarrow = ">=3.0.0"
+pyarrow = ">=4.0.0"
 pydata-google-auth = ">=1.5.0"
 setuptools = "*"
 
 [package.extras]
 bqstorage = ["google-cloud-bigquery-storage (>=2.16.2,<3.0.0dev)"]
+geopandas = ["Shapely (>=1.8.4)", "geopandas (>=0.9.0)"]
 tqdm = ["tqdm (>=4.23.0)"]
 
 [[package]]
