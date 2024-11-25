@@ -5,7 +5,9 @@ on:
       - 'pandas_pyarrow/**'
       - 'tests/**'
       - '.github/workflows/codecov.yml'
-
+  push:
+    branches:
+      - main
   workflow_dispatch:
 jobs:
   upload-coverage-report:
