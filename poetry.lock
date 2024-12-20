@@ -910,13 +910,13 @@ xml = ["lxml (>=4.9.2)"]
 
 [[package]]
 name = "pandas-gbq"
-version = "0.25.0"
+version = "0.26.0"
 description = "Google BigQuery connector for pandas"
 optional = true
 python-versions = ">=3.8"
 files = [
-    {file = "pandas_gbq-0.25.0-py2.py3-none-any.whl", hash = "sha256:fbb89146c959cf54ed9003db0a5775af908c41de8cf5f24739fa8959893c67e6"},
-    {file = "pandas_gbq-0.25.0.tar.gz", hash = "sha256:e16362701788c2b528e0202ac744195b1e1c9153e1fe5cfa130401756077e2d7"},
+    {file = "pandas_gbq-0.26.0-py2.py3-none-any.whl", hash = "sha256:869e64a26099d9f936d15c5f1e64944e413826386d35bf60c62c527c28e56163"},
+    {file = "pandas_gbq-0.26.0.tar.gz", hash = "sha256:e68cea81b55761e11bc154ec2ac8c9f55d8605bd51039f9af45069236e5aa401"},
 ]
 
 [package.dependencies]
