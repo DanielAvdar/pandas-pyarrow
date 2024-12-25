@@ -1,3 +1,4 @@
+from pandas_pyarrow import convert_to_numpy
 from pandas_pyarrow.pda_converter import PandasArrowConverter
 
 import pandas as pd
@@ -29,3 +30,7 @@ def test_numeric_types(df_data, expected_dtype):
     sa = PandasArrowConverter()
     adf = sa(df_data)
     assert list(adf.dtypes)[0] == expected_dtype
+    rdf = convert_to_numpy(adf)
+    assert "Float" not in str(rdf.dtypes[0])
+    assert "Int" not in str(rdf.dtypes[0])
+    assert "pyarrow" not in str(rdf.dtypes[0])

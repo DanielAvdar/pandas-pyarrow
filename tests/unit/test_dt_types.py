@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from pandas_pyarrow import convert_to_numpy
 from pandas_pyarrow.pda_converter import PandasArrowConverter
 
 import pandas as pd
@@ -23,15 +24,26 @@ def test_dt_types(df_data, expected_dtype):
     adf = sa(df_data)
 
     assert list(adf.dtypes)[0] == expected_dtype
+    rdf = convert_to_numpy(adf)
+    assert "pyarrow" not in str(rdf.dtypes[0])
 
 
+@Parametrization.autodetect_parameters()
 @Parametrization.case(
-    name="Test Case: Datetime with Timezone",
+    name="Test Case: Datetime with Timezone US/Eastern",
     data=dict(
         data={"test_column": [datetime.now(timezone("US/Eastern")), None]},
         dtype="datetime64[ns, US/Eastern]",
     ),
     expected_dtype="timestamp[ns, tz=US/Eastern][pyarrow]",
+)
+@Parametrization.case(
+    name="Test Case: Datetime with Timezone Africa/Abidjan",
+    data=dict(
+        data={"test_column": [datetime.now(timezone("Africa/Abidjan")), None]},
+        dtype="datetime64[ns, Africa/Abidjan]",
+    ),
+    expected_dtype="timestamp[ns, tz=Africa/Abidjan][pyarrow]",
 )
 @Parametrization.case(
     name="Test Case: Datetime with UTC Timezone",
@@ -47,6 +59,8 @@ def test_dt_tz_types(data, expected_dtype):
     adf = sa(df_data)
 
     assert list(adf.dtypes)[0] == expected_dtype
+    rdf = convert_to_numpy(adf)
+    assert "pyarrow" not in str(rdf.dtypes[0])
 
 
 @Parametrization.autodetect_parameters()
@@ -80,3 +94,6 @@ def test_timedelta_types(df_data, expected_dtype):
     adf = sa(df_data)
 
     assert list(adf.dtypes)[0] == expected_dtype
+    rdf = convert_to_numpy(adf)
+    assert "pyarrow" not in str(rdf.dtypes[0])
+    # assert "[" in str(rdf.dtypes[0])
