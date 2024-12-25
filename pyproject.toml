@@ -41,7 +41,7 @@ keywords = [
 packages = [{ include = "pandas_pyarrow", from = "." }]
 
 [tool.poetry.dependencies]
-python = ">=3.10,<4"
+python = ">=3.9,<4"
 pandas = ">=2"
 db-dtypes = { version = ">=1", optional = true }
 pandas-gbq = { version = ">=0.15.0", optional = true }
