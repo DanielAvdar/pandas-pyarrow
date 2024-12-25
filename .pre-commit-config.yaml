@@ -7,12 +7,12 @@ repos:
       - id: trailing-whitespace
       - id: no-commit-to-branch
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.1.4
+    rev: v0.8.4
     hooks:
       - id: ruff-format
-        args: [ --preview ]
+        args: [ --preview, --config=pyproject.toml ]
       - id: ruff
-        args: [ --preview, --fix]
+        args: [ --preview, --fix,--unsafe-fixes, --config=pyproject.toml ]
 
   - repo: local
     hooks:
