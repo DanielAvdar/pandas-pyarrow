@@ -21,6 +21,6 @@ jobs:
           python-version: '3.11'
           cache: poetry
 
-      - run: poetry install
-      - run: poetry run pre-commit install
-      - run: poetry run pre-commit run --all-files
+      - run: make
+      - run: make check
+      - run: make mypy
