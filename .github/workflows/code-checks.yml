@@ -6,6 +6,7 @@ on:
       - 'pandas_pyarrow/**'
       - 'tests/**'
       - '.github/workflows/code-checks.yml'
+      - '.pre-commit-config.yaml'
 
   workflow_dispatch:
 jobs:
