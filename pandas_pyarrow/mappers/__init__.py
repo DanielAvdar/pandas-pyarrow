@@ -1,9 +1,9 @@
 from typing import Dict
 
-from .datetime_mapper import datetime_mapper
+from .datetime_mapper import datetime_mapper, reverse_datetime_mapper
 from .db_types import mapper_db_types
-from .dtype_mapper import mapper_dict_dt, mapper_dict_object
-from .numeric_mapper import numeric_mapper
+from .dtype_mapper import mapper_dict_dt, mapper_dict_object, reverse_mapper_dict
+from .numeric_mapper import numeric_mapper, reverse_numeric_mapper
 
 
 def create_mapper() -> Dict[str, str]:
@@ -20,10 +20,29 @@ def create_mapper() -> Dict[str, str]:
     return all_mapper_dicts
 
 
+def reverse_create_mapper(
+    adapter: str = "tz=",
+) -> Dict[str, str]:
+    all_mapper_dicts: Dict[str, str] = dict(
+        **reverse_numeric_mapper(["float"], ["16", "32", "64"]),
+        **reverse_numeric_mapper(["int"], ["8", "16", "32", "64"]),
+        # **reverse_numeric_mapper(["Float", "Int"], ["32", "64"]),
+        **reverse_numeric_mapper(["uint"], ["8", "16", "32", "64"]),
+        **reverse_datetime_mapper(adapter=adapter),
+        **reverse_mapper_dict,
+    )
+    return all_mapper_dicts
+
+
+# def reverse_mapper_adapter(all_mapper_dicts: Dict[str, str]) -> Dict[str, str]:
+#     new_mapper = {}
+#     for key, value in all_mapper_dicts.items():
+#         if 'tz='
 __all__ = [
     "mapper_dict_dt",
     "mapper_dict_object",
     "create_mapper",
+    "reverse_create_mapper",
     "mapper_db_types",
     "datetime_mapper",
     "numeric_mapper",

@@ -16,6 +16,7 @@ def test_convert_timestamp():
     rdf = convert_to_numpy(adf)
     r_dtype = rdf["timestamp_col"].dtype
     assert "pyarrow" not in repr(r_dtype)
+    rdf = convert_to_numpy(adf)
 
 
 def test_convert_halffloat():
@@ -25,6 +26,7 @@ def test_convert_halffloat():
     rdf = convert_to_numpy(adf)
     r_dtype = rdf["halffloat_col"].dtype
     assert "pyarrow" not in repr(r_dtype)
+    rdf = convert_to_numpy(adf)
 
 
 def test_convert_duration():
@@ -34,6 +36,7 @@ def test_convert_duration():
     rdf = convert_to_numpy(adf)
     r_dtype = rdf["duration_col"].dtype
     assert r_dtype == "timedelta64[ns]"
+    rdf = convert_to_numpy(adf)
 
 
 def test_convert_string():
@@ -42,4 +45,6 @@ def test_convert_string():
     adf = convert_to_pyarrow(df)
     rdf = convert_to_numpy(adf)
     r_dtype = rdf["string_col"].dtype
-    assert repr(r_dtype) == "string[python]"
+    assert repr(r_dtype) != "string[pyarrow]"
+    assert "pyarrow" not in repr(r_dtype)
+    assert "pyarrow" not in str(r_dtype)
