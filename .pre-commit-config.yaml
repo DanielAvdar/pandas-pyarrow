@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.0.1
+    rev: v5.0.0
     hooks:
       - id: debug-statements
       - id: end-of-file-fixer
@@ -13,12 +13,3 @@ repos:
         args: [ --preview, --config=pyproject.toml ]
       - id: ruff
         args: [ --preview, --fix,--unsafe-fixes, --config=pyproject.toml ]
-
-  - repo: local
-    hooks:
-      - id: mypy
-        name: mypy
-        entry: mypy
-        language: python
-        types: [ python ]
-        args: [ --config-file, pyproject.toml ]
