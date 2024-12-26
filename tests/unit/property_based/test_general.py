@@ -26,11 +26,12 @@ def test_common_dtypes_hp(df):
 
 @hp.given(df=df_st(dtypes=COMMON_DTYPES_SAMPLE + UNCOMMON_DTYPES_SAMPLE))
 def test_convert_to_numpy(df):
-    df_copy = df.copy()
     adf = convert_to_pyarrow(df)
+    df_copy = adf.copy()
     rdf = convert_to_numpy(adf)
     new_numpy_dtypes = [repr(i) for i in rdf.dtypes.tolist()]
     is_numpy = ["[pyarrow]" not in dtype for dtype in new_numpy_dtypes]
     assert all(is_numpy), "Some dtypes are not converted to numpy"
     assert rdf.equals(convert_to_numpy(rdf)), "The conversion is not idempotent"
-    assert df_copy.equals(df), "The original df has been modified"
+    assert df_copy.equals(adf), "The original df has been modified"
+    # assert convert_to_pyarrow(rdf).equals(adf), "The conversion is not consistent back and forth"

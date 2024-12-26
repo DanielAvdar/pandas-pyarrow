@@ -49,3 +49,4 @@ def test_dt_tz_types(data, expected_dtype):
     rdf = convert_to_numpy(adf)
     assert "pyarrow" not in str(rdf.dtypes[0])
     assert rdf.compare(df_data).empty
+    assert len(set(rdf.dtypes).union(set(adf.dtypes))) > 1
