@@ -9,9 +9,7 @@ import pandas as pd
 
 
 @hp.given(pair=single_column_df_st(gen_type="datetime64[ns]", pair_mapping=datetime_mapper()))
-# @hp.settings(max_examples=300)
 def test_datetime_numpy_api_hp(pair: Tuple[pd.DataFrame, str]):
     df, target_dtype = pair
     adf = convert_to_pyarrow(df)
-
     assert list(adf.dtypes)[0] == target_dtype

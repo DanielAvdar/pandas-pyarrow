@@ -39,8 +39,8 @@ def create_dataframe(draw: Any, gen_type: str) -> pd.DataFrame:
             dtype=gen_type,
         ),
         index=range_indexes(
-            min_size=1,
-            max_size=6,
+            min_size=3,
+            max_size=8,
         ),
     )
     df: pd.DataFrame = draw(dfs_st)

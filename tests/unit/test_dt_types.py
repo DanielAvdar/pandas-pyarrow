@@ -96,4 +96,3 @@ def test_timedelta_types(df_data, expected_dtype):
     assert list(adf.dtypes)[0] == expected_dtype
     rdf = convert_to_numpy(adf)
     assert "pyarrow" not in str(rdf.dtypes[0])
-    # assert "[" in str(rdf.dtypes[0])
