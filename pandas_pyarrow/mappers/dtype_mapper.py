@@ -13,6 +13,7 @@ mapper_dict_object: Dict[str, str] = {
     "category": "string[pyarrow]",
     "string": "string[pyarrow]",
     "bool": "bool[pyarrow]",
+    "boolean": "bool[pyarrow]",
 }
 
 reverse_mapper_dict: Dict[str, str] = {
@@ -21,6 +22,7 @@ reverse_mapper_dict: Dict[str, str] = {
     "duration[us][pyarrow]": "timedelta64[us]",
     "duration[s][pyarrow]": "timedelta64[s]",
     "date32[pyarrow]": "datetime64[ns]",
+    "date32[day][pyarrow]": "datetime64[ns]",
     "string[pyarrow]": "object",
     "bool[pyarrow]": "bool",
     "time64[ns][pyarrow]": "datetime64[ns]",

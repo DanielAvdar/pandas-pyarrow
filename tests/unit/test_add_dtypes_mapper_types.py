@@ -43,3 +43,4 @@ def test_add_dtypes_types(df_data, expected_dtype, additional_mapper_dicts):
     assert list(adf.dtypes)[0] == expected_dtype
     rdf = convert_to_numpy(adf)
     assert list(rdf.dtypes)[0] != expected_dtype
+    assert len(set(rdf.dtypes).union(set(adf.dtypes))) > 1

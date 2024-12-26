@@ -9,9 +9,8 @@ from .numeric_mapper import numeric_mapper, reverse_numeric_mapper
 def create_mapper() -> Dict[str, str]:
     all_mapper_dicts: Dict[str, str] = dict(
         **numeric_mapper(["float"], ["16", "32", "64"]),
-        **numeric_mapper(["int"], ["8", "16", "32", "64"]),
-        **numeric_mapper(["Float", "Int"], ["32", "64"]),
-        **numeric_mapper(["uint"], ["8", "16", "32", "64"]),
+        **numeric_mapper(["int", "Int", "uint", "UInt"], ["8", "16", "32", "64"]),
+        **numeric_mapper(["Float"], ["32", "64"]),
         **datetime_mapper(),
         **mapper_dict_dt,
         **mapper_dict_object,
@@ -26,7 +25,6 @@ def reverse_create_mapper(
     all_mapper_dicts: Dict[str, str] = dict(
         **reverse_numeric_mapper(["float"], ["16", "32", "64"]),
         **reverse_numeric_mapper(["int"], ["8", "16", "32", "64"]),
-        # **reverse_numeric_mapper(["Float", "Int"], ["32", "64"]),
         **reverse_numeric_mapper(["uint"], ["8", "16", "32", "64"]),
         **reverse_datetime_mapper(adapter=adapter),
         **reverse_mapper_dict,
@@ -34,10 +32,6 @@ def reverse_create_mapper(
     return all_mapper_dicts
 
 
-# def reverse_mapper_adapter(all_mapper_dicts: Dict[str, str]) -> Dict[str, str]:
-#     new_mapper = {}
-#     for key, value in all_mapper_dicts.items():
-#         if 'tz='
 __all__ = [
     "mapper_dict_dt",
     "mapper_dict_object",
