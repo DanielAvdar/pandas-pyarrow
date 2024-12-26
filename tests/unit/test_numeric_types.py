@@ -53,3 +53,8 @@ def test_numeric_types(df_data, expected_dtype):
     assert "pyarrow" not in repr(rdf.dtypes[0])
     assert "pyarrow" not in str(rdf.dtypes[0])
     assert len(set(rdf.dtypes).union(set(adf.dtypes))) > 1
+    is_lowercase_dtype = str(df_data.dtypes[0]).lower() == str(df_data.dtypes[0])
+    is_not_complex = "complex" not in str(df_data.dtypes[0])
+    is_not_pyarrow = "pyarrow" not in str(df_data.dtypes[0])
+    if is_lowercase_dtype and is_not_complex and is_not_pyarrow:
+        assert df_data.equals(rdf)

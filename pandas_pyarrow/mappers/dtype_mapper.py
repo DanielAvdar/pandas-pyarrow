@@ -23,12 +23,12 @@ reverse_mapper_dict: Dict[str, str] = {
     "duration[s][pyarrow]": "timedelta64[s]",
     "date32[pyarrow]": "datetime64[ns]",
     "date32[day][pyarrow]": "datetime64[ns]",
-    "string[pyarrow]": "object",
+    "string[pyarrow]": "string",
     "bool[pyarrow]": "bool",
     "time64[ns][pyarrow]": "datetime64[ns]",
     # "time64[ms][pyarrow]": "datetime64[ms]", todo: pandas error NotImplementedError
     "time64[us][pyarrow]": "datetime64[us]",
     "double[pyarrow]": "float64",
-    "float[pyarrow]": "float64",
+    "float[pyarrow]": "float32",
     "halffloat[pyarrow]": "float16",
 }
