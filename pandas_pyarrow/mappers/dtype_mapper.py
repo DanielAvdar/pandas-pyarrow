@@ -4,6 +4,7 @@ mapper_dict_dt: Dict[str, str] = {
     "timedelta64[ns]": "duration[ns][pyarrow]",
     "timedelta64[ms]": "duration[ms][pyarrow]",
     "timedelta64[us]": "duration[us][pyarrow]",
+    "timedelta64[s]": "duration[s][pyarrow]",
     "timedelta64": "duration[us][pyarrow]",
 }
 mapper_dict_object: Dict[str, str] = {
@@ -18,6 +19,7 @@ reverse_mapper_dict: Dict[str, str] = {
     "duration[ns][pyarrow]": "timedelta64[ns]",
     "duration[ms][pyarrow]": "timedelta64[ms]",
     "duration[us][pyarrow]": "timedelta64[us]",
+    "duration[s][pyarrow]": "timedelta64[s]",
     "date32[pyarrow]": "datetime64[ns]",
     "string[pyarrow]": "object",
     "bool[pyarrow]": "bool",

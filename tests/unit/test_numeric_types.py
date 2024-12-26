@@ -31,6 +31,7 @@ def create_test_case(
 @create_test_case("float16", "float16[pyarrow]", [1.0, 2.0, 3.0, None])
 @create_test_case("complex64", "string[pyarrow]", [1, 2, 3])
 @create_test_case("float32[pyarrow]", "float32[pyarrow]", [1.0, 2.0, 3.0, None])
+@create_test_case("float64[pyarrow]", "float64[pyarrow]", [1.0, 2.0, 3.0, None])
 def test_numeric_types(df_data, expected_dtype):
     sa = PandasArrowConverter()
     adf = sa(df_data)
