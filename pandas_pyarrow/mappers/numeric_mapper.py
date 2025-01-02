@@ -17,3 +17,21 @@ def numeric_mapper(source_types: List[str], variations: List[str]) -> Dict[str, 
     all_floats = create_type_variations(source_types, lambda x: "float" in x.lower(), variations)
     all_combinations = {**all_ints, **all_floats}
     return all_combinations
+
+
+def reverse_create_type_variations(
+    source_types: List[str], filter_func: Callable[[str], bool], variations: List[str]
+) -> Dict[str, str]:
+    filtered_types = [source_type for source_type in source_types if filter_func(source_type)]
+    return {
+        f"{source_type.lower()}{variation}[pyarrow]": f"{source_type}{variation}"
+        for source_type in filtered_types
+        for variation in variations
+    }
+
+
+def reverse_numeric_mapper(source_types: List[str], variations: List[str]) -> Dict[str, str]:
+    all_ints = reverse_create_type_variations(source_types, lambda x: "int" in x.lower(), variations)
+    all_floats = reverse_create_type_variations(source_types, lambda x: "float" in x.lower(), variations)
+    all_combinations = {**all_ints, **all_floats}
+    return all_combinations
