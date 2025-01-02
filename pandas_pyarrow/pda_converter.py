@@ -23,11 +23,9 @@ class PandasArrowConverter:
 
     def __init__(
         self,
-        parquet_compatible: Optional[bool] = False,
         custom_mapper: Optional[Dict[str, str]] = None,
         default_target_type: Optional[str] = "string[pyarrow]",
     ):
-        self.parquet_compatible = parquet_compatible
         self.additional_mapper_dicts = custom_mapper or {}
         self.defaults_dtype = default_target_type
         self._mapper = create_mapper() | self.additional_mapper_dicts
