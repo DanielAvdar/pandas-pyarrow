@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from pandas_pyarrow import convert_to_numpy
 from pandas_pyarrow.pda_converter import PandasArrowConverter
 
 import pandas as pd
@@ -29,8 +30,17 @@ def create_df(column_values, data_type):
     expected_dtype="float32[pyarrow]",
     additional_mapper_dicts={"float64": "float32[pyarrow]"},
 )
+@Parametrization.case(
+    name="test simple type mapping override with additional_mapper_dicts ms",
+    df_data=create_df([0.0000000001, 2.0, 3.0, None], "float64"),
+    expected_dtype="float16[pyarrow]",
+    additional_mapper_dicts={"float64": "float16[pyarrow]"},
+)
 def test_add_dtypes_types(df_data, expected_dtype, additional_mapper_dicts):
     sa = PandasArrowConverter(custom_mapper=additional_mapper_dicts)
     adf = sa(df_data)
 
     assert list(adf.dtypes)[0] == expected_dtype
+    rdf = convert_to_numpy(adf)
+    assert list(rdf.dtypes)[0] != expected_dtype
+    assert len(set(rdf.dtypes).union(set(adf.dtypes))) > 1
