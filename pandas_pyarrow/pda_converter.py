@@ -7,9 +7,6 @@ import pandas as pd
 
 class PandasArrowConverter:
     """PandasArrowConverter manages the conversion of Pandas DataFrame data types to Arrow data types.
-
-    :param parquet_compatible: if True, column names will be converted to parquet compatible names. Default is False.
-    **disclaimer**: not yet implemented
     :param custom_mapper: dictionary with key as the source data type and value as the target data type.
     Will override default mapping
     :param default_target_type: Optional string specifying the default data type to use if no mapping is found for a
