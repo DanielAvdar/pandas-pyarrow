@@ -9,6 +9,21 @@ import pandas as pd
 
 
 class ReversePandasArrowConverter:
+    """
+    ReversePandasArrowConverter manages the conversion of pyarrow-backed Pandas DataFrame dtypes
+    back to their Numpy/Pandas equivalents.
+    :param custom_mapper: Dictionary with key as the string-representation of the
+        Arrow-backed dtype, and value as the desired target dtype (e.g. "object", "int64", etc.).
+        This overrides default mapping returned by reverse_create_mapper().
+    :param default_target_type: Optional string specifying the default dtype to use
+        if no mapping is found for a specific dtype. Default is "object".
+    Methods
+    -------
+    - __call__(df: pd.DataFrame) -> pd.DataFrame:
+        Converts pyarrow-backed dtypes in the given Pandas DataFrame to Numpy/Pandas dtypes
+        and returns the converted DataFrame.
+    """
+
     def __init__(
         self,
         custom_mapper: Optional[Dict[str, str]] = None,
@@ -39,9 +54,5 @@ class ReversePandasArrowConverter:
 
 
 def convert_to_numpy(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Legacy function for backward-compatibility.
-    Instantiates ReversePandasArrowConverter and applies it.
-    """
     converter = ReversePandasArrowConverter()
     return converter(df)
