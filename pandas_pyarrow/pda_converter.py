@@ -7,9 +7,6 @@ import pandas as pd
 
 class PandasArrowConverter:
     """PandasArrowConverter manages the conversion of Pandas DataFrame data types to Arrow data types.
-
-    :param parquet_compatible: if True, column names will be converted to parquet compatible names. Default is False.
-    **disclaimer**: not yet implemented
     :param custom_mapper: dictionary with key as the source data type and value as the target data type.
     Will override default mapping
     :param default_target_type: Optional string specifying the default data type to use if no mapping is found for a
@@ -23,11 +20,9 @@ class PandasArrowConverter:
 
     def __init__(
         self,
-        parquet_compatible: Optional[bool] = False,
         custom_mapper: Optional[Dict[str, str]] = None,
         default_target_type: Optional[str] = "string[pyarrow]",
     ):
-        self.parquet_compatible = parquet_compatible
         self.additional_mapper_dicts = custom_mapper or {}
         self.defaults_dtype = default_target_type
         self._mapper = create_mapper() | self.additional_mapper_dicts
