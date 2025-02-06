@@ -243,13 +243,13 @@ toml = ["tomli"]
 
 [[package]]
 name = "db-dtypes"
-version = "1.4.0"
+version = "1.4.1"
 description = "Pandas Data Types for SQL systems (BigQuery, Spanner)"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "db_dtypes-1.4.0-py2.py3-none-any.whl", hash = "sha256:e97eeabced46e77a7eaa634098909f2392b29cae50b1c4900b2d9dc2c3dbf205"},
-    {file = "db_dtypes-1.4.0.tar.gz", hash = "sha256:e715cfb015da72dbd47e9066d1fed7750d844fca03cd27a2af2c242bf84c0471"},
+    {file = "db_dtypes-1.4.1-py2.py3-none-any.whl", hash = "sha256:84076e2f952174da3eea16c2692409a0d3ef88d27b68c24ee0c9262513fa26d4"},
+    {file = "db_dtypes-1.4.1.tar.gz", hash = "sha256:36403e252c03c4a5073f67e4315015c7d1f57b2614f56d2037587e0743670fb8"},
 ]
 
 [package.dependencies]
