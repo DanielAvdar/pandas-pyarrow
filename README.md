@@ -45,7 +45,7 @@ adf: pd.DataFrame = convert_to_pyarrow(df)
 print(adf.dtypes)
 ```
 
-outputs:
+Outputs:
 
 ```
 A     int64[pyarrow]
@@ -181,12 +181,12 @@ dtype: object
 
 ## Purposes
 
-- Simplify the conversion between pandas pyarrow and numpy backends.
-- Allow seamlessly switch to pyarrow pandas backend, even for problematic dtypes such float16 or db-dtypes.
-- dtype standardization for db-dtypes used by bigquery python sdk.
+- Simplify the conversion process between pandas' pyarrow and numpy backends.
+- Provide seamless integration with the pyarrow pandas backend, even for challenging dtypes such as float16 or
+  db-dtypes.
+- Standardize dtypes for db-dtypes used by the BigQuery Python SDK.
 
-
-example:
+### Example:
 
 ```python
 import pandas as pd
