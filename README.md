@@ -176,6 +176,9 @@ map_page                           string[pyarrow]
 map_tile                           string[pyarrow]
 dtype: object
 ```
+## Documentation
+
+[Documentation](https://pandas-pyarrow.readthedocs.io/en/latest/) is available online.
 
 ## Purposes
 
