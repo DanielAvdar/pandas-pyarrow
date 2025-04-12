@@ -28,8 +28,6 @@ extensions = [
     "sphinx.ext.napoleon",  # Support for Google and NumPy style docstrings
     "sphinx.ext.viewcode",  # Add links to source code
     "sphinx.ext.githubpages",  # If deploying to GitHub Pages
-    "sphinx.ext.autodoc",
-    "sphinx.ext.doctest",
     "sphinx.ext.intersphinx",
 ]
 
