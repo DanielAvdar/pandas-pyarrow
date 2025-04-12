@@ -18,4 +18,4 @@ To install pandas-pyarrow with extra features (e.g. BigQuery):
 
     pip install pandas-pyarrow[bigquery]
 
-See the :doc:`extras` documentation for details on additional integrations and features.
+See the :doc:`extras/extras` documentation for details on additional integrations and features.

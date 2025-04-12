@@ -43,4 +43,4 @@ Welcome to the documentation for **pandas-pyarrow**, a library designed to simpl
 
    usage
    api_reference
-   extras
+   ./extras/extras
