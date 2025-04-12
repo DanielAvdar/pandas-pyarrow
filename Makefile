@@ -15,6 +15,6 @@ check:
 mypy:
 	poetry run mypy pandas_pyarrow --config-file pyproject.toml
 coverage:
-	poetry run pytest --cov=ml_orchestrator --cov-report=xml
+	poetry run pytest --cov=pandas_pyarrow --cov-report=xml --junitxml=junit.xml -o junit_family=legacy
 doc:
 	poetry run sphinx-build -M html docs/source docs/build/

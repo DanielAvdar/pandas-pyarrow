@@ -23,6 +23,6 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: poetry
 
-      - run: poetry install
-      - run: poetry run pytest
+      - run: make
+      - run: make test
     continue-on-error: true
