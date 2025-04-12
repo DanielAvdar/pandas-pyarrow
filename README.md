@@ -200,11 +200,14 @@ df = pd.DataFrame({
 
 df.convert_dtypes(dtype_backend='pyarrow')
 ```
+
 will raise an error:
 ```
 pyarrow.lib.ArrowNotImplementedError: Unsupported cast from halffloat to double using function cast_double
 ```
+
 but with pandas-pyarrow:
+
 ```python
 import pandas as pd
 
