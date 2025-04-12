@@ -12,16 +12,13 @@ class ReversePandasArrowConverter:
     """
     ReversePandasArrowConverter manages the conversion of pyarrow-backed Pandas DataFrame dtypes
     back to their Numpy/Pandas equivalents.
+
     :param custom_mapper: Dictionary with key as the string-representation of the
         Arrow-backed dtype, and value as the desired target dtype (e.g. "object", "int64", etc.).
         This overrides default mapping returned by reverse_create_mapper().
     :param default_target_type: Optional string specifying the default dtype to use
         if no mapping is found for a specific dtype. Default is "object".
-    Methods
-    -------
-    - __call__(df: pd.DataFrame) -> pd.DataFrame:
-        Converts pyarrow-backed dtypes in the given Pandas DataFrame to Numpy/Pandas dtypes
-        and returns the converted DataFrame.
+
     """
 
     def __init__(
@@ -33,6 +30,19 @@ class ReversePandasArrowConverter:
         self._default_target_type = default_target_type
 
     def __call__(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Maps the data types of a given pandas DataFrame to the target data types
+        specified by the object's internal mapping logic. This method processes
+        the DataFrame by replacing its column data types according to the mapped
+        target types and returns a new DataFrame with these updated data types.
+        Any `NaN` values are handled accordingly during the process.
+
+        :param df: A pandas DataFrame that is to be processed.
+        :type df: pd.DataFrame
+        :return: A new pandas DataFrame with updated column data types as per
+                 the mapping.
+        :rtype: pd.DataFrame
+        """
         dtype_names: List[str] = df.dtypes.astype(str).tolist()
         target_dtype_names = self._map_dtype_names(dtype_names)
         col_to_dtype = dict(zip(df.columns, target_dtype_names))
@@ -51,8 +61,3 @@ class ReversePandasArrowConverter:
 
     def _map_dtype_names(self, dtype_names: List[str]) -> List[str]:
         return [self._target_dtype_name(dtype_name) for dtype_name in dtype_names]
-
-
-def convert_to_numpy(df: pd.DataFrame) -> pd.DataFrame:
-    converter = ReversePandasArrowConverter()
-    return converter(df)
