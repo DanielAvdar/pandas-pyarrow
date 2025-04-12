@@ -10,6 +10,7 @@
 [![Code Checks](https://github.com/DanielAvdar/pandas-pyarrow/actions/workflows/code-checks.yml/badge.svg)](https://github.com/DanielAvdar/pandas-pyarrow/actions/workflows/code-checks.yml)
 [![codecov](https://codecov.io/gh/DanielAvdar/pandas-pyarrow/graph/badge.svg?token=N0V9KANTG2)](https://codecov.io/gh/DanielAvdar/pandas-pyarrow)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+![Last Commit](https://img.shields.io/github/last-commit/DanielAvdar/pandas-pyarrow/main)
 
 `pandas-pyarrow` simplifies the conversion of pandas backend to pyarrow, allowing seamlessly switch to pyarrow pandas
 backend.
