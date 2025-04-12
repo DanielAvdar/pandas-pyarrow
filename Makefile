@@ -3,7 +3,7 @@
 default: install
 
 install:
-	poetry install --all-extras
+	poetry install --all-extras --all-groups
 #	poetry run pre-commit autoupdate
 	poetry run pre-commit install
 
@@ -13,7 +13,7 @@ test:
 check:
 	poetry run pre-commit run --all-files
 mypy:
-	poetry run mypy . --config-file pyproject.toml
+	poetry run mypy pandas_pyarrow --config-file pyproject.toml
 coverage:
 	poetry run pytest --cov=ml_orchestrator --cov-report=xml
 doc:
