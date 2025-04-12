@@ -1,8 +1,8 @@
-[tool.poetry]
+[project]
 name = "pandas-pyarrow"
 version = "0.0.0"
 description = "A library for switching pandas backend to pyarrow"
-authors = ["DanielAvdar <66269169+DanielAvdar@users.noreply.github.com>"]
+authors = [{ name = "DanielAvdar", email = "66269169+DanielAvdar@users.noreply.github.com" }]
 license = "MIT"
 readme = "README.md"
 homepage = "https://github.com/DanielAvdar/pandas-pyarrow"
@@ -47,7 +47,11 @@ db-dtypes = { version = ">=1", optional = true }
 pandas-gbq = { version = ">=0.15.0", optional = true }
 pyarrow = ">=10.0.1"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.extras]
+db-dtypes = ["db-dtypes"]
+bigquery = ["pandas-gbq"]
+
+[tool.poetry.group.dev.dependencies]
 db-dtypes = ">=1"
 pytest = ">=7.1.2"
 hypothesis = ">=6.23.3"
@@ -59,10 +63,15 @@ types-pytz = ">=2024.1.0.20240203"
 pandas-stubs = ">=2.2.1.240316"
 ruff = ">=0.3.1"
 
-[tool.poetry.extras]
-db-dtypes = ["db-dtypes"]
-bigquery = ["pandas-gbq"]
 
+[tool.poetry.group.docs.dependencies]
+#sphinx = ">=7.0.0"
+sphinx = [
+    { version = ">=8.2.0", markers = "python_version >= '3.11'" },
+    { version = ">=7.0.0", markers = "python_version < '3.11'" }
+]
+
+sphinx-rtd-theme = "^3.0.2"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"

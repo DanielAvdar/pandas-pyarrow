@@ -16,3 +16,5 @@ mypy:
 	poetry run mypy . --config-file pyproject.toml
 coverage:
 	poetry run pytest --cov=ml_orchestrator --cov-report=xml
+doc:
+	poetry run sphinx-build -M html docs/source docs/build/
