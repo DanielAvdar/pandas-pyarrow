@@ -1,24 +1,25 @@
 # pandas-pyarrow
 
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pandas-pyarrow)](https://pypi.org/project/pandas-pyarrow/)
-[![version](https://img.shields.io/pypi/v/pandas-pyarrow)](https://img.shields.io/pypi/v/pandas-pyarrow)
-[![License](https://img.shields.io/:license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-![OS](https://img.shields.io/badge/ubuntu-blue?logo=ubuntu)
-![OS](https://img.shields.io/badge/win-blue?logo=windows)
-![OS](https://img.shields.io/badge/mac-blue?logo=apple)
-[![Tests](https://github.com/DanielAvdar/pandas-pyarrow/actions/workflows/ci.yml/badge.svg)](https://github.com/DanielAvdar/pandas-pyarrow/actions/workflows/ci.yml)
-[![Code Checks](https://github.com/DanielAvdar/pandas-pyarrow/actions/workflows/code-checks.yml/badge.svg)](https://github.com/DanielAvdar/pandas-pyarrow/actions/workflows/code-checks.yml)
-[![codecov](https://codecov.io/gh/DanielAvdar/pandas-pyarrow/graph/badge.svg?token=N0V9KANTG2)](https://codecov.io/gh/DanielAvdar/pandas-pyarrow)
+[![PyPI Version](https://img.shields.io/pypi/v/pandas-pyarrow)](https://pypi.org/project/pandas-pyarrow/)
+[![License](https://img.shields.io/badge/MIT-License-blue)](https://opensource.org/licenses/MIT)
+![Ubuntu](https://img.shields.io/badge/Ubuntu-Supported-blue?logo=ubuntu)
+![Windows](https://img.shields.io/badge/Windows-Supported-blue?logo=windows)
+![macOS](https://img.shields.io/badge/macOS-Supported-blue?logo=apple)
+[![Continuous Integration](https://github.com/DanielAvdar/pandas-pyarrow/actions/workflows/ci.yml/badge.svg)](https://github.com/DanielAvdar/pandas-pyarrow/actions/workflows/ci.yml)
+[![Code Quality](https://github.com/DanielAvdar/pandas-pyarrow/actions/workflows/code-checks.yml/badge.svg)](https://github.com/DanielAvdar/pandas-pyarrow/actions/workflows/code-checks.yml)
+[![Coverage Status](https://codecov.io/gh/DanielAvdar/pandas-pyarrow/branch/main/graph/badge.svg?token=N0V9KANTG2)](https://codecov.io/gh/DanielAvdar/pandas-pyarrow)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+![Last Commit](https://img.shields.io/github/last-commit/DanielAvdar/pandas-pyarrow/main)
 
-`pandas-pyarrow` simplifies the conversion of pandas backend to pyarrow, allowing seamlessly switch to pyarrow pandas
+`pandas-pyarrow` simplifies the conversion of pandas backends to pyarrow, allowing a seamless switch to pyarrow pandas
 backend.
 
 ## Get started:
 
 ### Installation
 
-To install the package use pip:
+Install the package using pip:
 
 ```bash
 pip install pandas-pyarrow
@@ -28,7 +29,6 @@ pip install pandas-pyarrow
 
 ```python
 import pandas as pd
-
 from pandas_pyarrow import convert_to_pyarrow
 
 # Create a pandas DataFrame
@@ -45,7 +45,7 @@ adf: pd.DataFrame = convert_to_pyarrow(df)
 print(adf.dtypes)
 ```
 
-outputs:
+Outputs:
 
 ```
 A     int64[pyarrow]
@@ -175,15 +175,18 @@ map_page                           string[pyarrow]
 map_tile                           string[pyarrow]
 dtype: object
 ```
+## Documentation
+
+[Documentation](https://pandas-pyarrow.readthedocs.io/en/latest/) is available online.
 
 ## Purposes
 
-- Simplify the conversion between pandas pyarrow and numpy backends.
-- Allow seamlessly switch to pyarrow pandas backend, even for problematic dtypes such float16 or db-dtypes.
-- dtype standardization for db-dtypes used by bigquery python sdk.
+- Simplify the conversion process between pandas' pyarrow and numpy backends.
+- Provide seamless integration with the pyarrow pandas backend, even for challenging dtypes such as float16 or
+  db-dtypes.
+- Standardize dtypes for db-dtypes used by the BigQuery Python SDK.
 
-
-example:
+### Example:
 
 ```python
 import pandas as pd
@@ -197,11 +200,14 @@ df = pd.DataFrame({
 
 df.convert_dtypes(dtype_backend='pyarrow')
 ```
+
 will raise an error:
 ```
 pyarrow.lib.ArrowNotImplementedError: Unsupported cast from halffloat to double using function cast_double
 ```
+
 but with pandas-pyarrow:
+
 ```python
 import pandas as pd
 

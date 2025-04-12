@@ -12,10 +12,6 @@ class PandasArrowConverter:
     :param default_target_type: Optional string specifying the default data type to use if no mapping is found for a
     specific data type. Default is "string[pyarrow]".
 
-    Methods
-    -------
-    - __call__(self, df: pd.DataFrame) -> pd.DataFrame: Converts the data types of the given Pandas DataFrame
-     and returns the converted DataFrame.
     """
 
     def __init__(
@@ -28,6 +24,19 @@ class PandasArrowConverter:
         self._mapper = create_mapper() | self.additional_mapper_dicts
 
     def __call__(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Apply a transformation to the dtypes of a Pandas DataFrame based on a mapping.
+
+        The function adjusts the data types of the columns in the provided DataFrame.
+        It uses the current dtypes of the DataFrame columns, processes them through
+        a mapping function to get the corresponding target dtypes, and applies the
+        mapping to create a new DataFrame with updated dtypes.
+
+        :param df: A Pandas DataFrame whose column dtypes will be transformed.
+        :type df: pd.DataFrame
+        :return: A new Pandas DataFrame with transformed column dtypes.
+        :rtype: pd.DataFrame
+        """
         dtype_names: List[str] = df.dtypes.astype(str).tolist()
         target_dtype_names = self._map_dtype_names(dtype_names)
         adf = df.astype(dict(zip(df.columns, target_dtype_names)))

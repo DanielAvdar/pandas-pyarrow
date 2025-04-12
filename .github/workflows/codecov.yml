@@ -20,8 +20,8 @@ jobs:
           python-version: '3.11'
           cache: poetry
 
-      - run: poetry install
-      - run: poetry run pytest --cov=pandas_pyarrow --cov-report=xml
+      - run: make
+      - run: make coverage
       - uses: codecov/codecov-action@v5
         with:
           fail_ci_if_error: true
