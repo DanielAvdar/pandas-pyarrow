@@ -11,15 +11,18 @@ Functions
 .. autofunction:: convert_to_pyarrow
 .. autofunction:: convert_to_numpy
 
+
+
+
 Classes
 -------
 
 .. autoclass:: PandasArrowConverter
-   :members:
+   :members: __call__
    :undoc-members:
    :show-inheritance:
 
 .. autoclass:: ReversePandasArrowConverter
-   :members:
+   :members: __call__
    :undoc-members:
    :show-inheritance:
