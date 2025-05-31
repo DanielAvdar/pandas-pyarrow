@@ -234,3 +234,33 @@ dtype: object
 
 When converting from higher precision numerical dtypes (like float64) to
 lower precision (like float32), data precision might be compromised.
+
+### Nested Data Types Support
+
+pandas-pyarrow also supports automatic detection and conversion of nested data types:
+
+```python
+import pandas as pd
+from pandas_pyarrow import convert_to_pyarrow, convert_to_numpy
+
+# Create a DataFrame with list and dictionary columns
+df = pd.DataFrame({
+    'list_col': [[1, 2, 3], [4, 5], [6, 7, 8, 9]],
+    'dict_col': [{'a': 1, 'b': 2}, {'c': 3}, {'d': 4, 'e': 5}]
+})
+
+# Convert to PyArrow-backed DataFrame
+adf = convert_to_pyarrow(df)
+
+# Access nested type information
+converter = PandasArrowConverter()
+nested_types = converter.get_nested_dtypes(adf)
+print(nested_types)
+
+# Convert back to pandas/numpy
+rdf = convert_to_numpy(adf)
+```
+
+This will properly convert:
+- List columns to `list[pyarrow]` type
+- Dictionary columns to `struct[pyarrow]` type
