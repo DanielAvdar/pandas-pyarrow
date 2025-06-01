@@ -1,4 +1,4 @@
-name: CI
+name: Tests
 on:
   pull_request:
     paths:
@@ -6,10 +6,10 @@ on:
       - 'tests/**'
       - '.github/workflows/ci.yml'
       - 'pyproject.toml'
-      - 'poetry.lock'
+      - 'uv.lock'
   workflow_dispatch:
 jobs:
-  tests:
+  pytest:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -17,12 +17,9 @@ jobs:
         python-version: [ '3.9', '3.10', '3.11', '3.12', '3.13' ]
     steps:
       - uses: actions/checkout@v4
-      - run: pipx install poetry
-      - uses: actions/setup-python@v5
+      - uses: astral-sh/setup-uv@v6
         with:
-          python-version: ${{ matrix.python-version }}
-          cache: poetry
-
-      - run: make
+          enable-cache: true
+      - run: uv python install ${{ matrix.python-version }}
       - run: make test
     continue-on-error: true

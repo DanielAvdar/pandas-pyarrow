@@ -12,12 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: pipx install poetry
-      - uses: actions/setup-python@v5
-      - run: poetry install
-      - run: poetry check
-      - run: poetry run pytest
-      - run: poetry version ${{ github.ref_name }}
-      - run: poetry build
-      - run: poetry config pypi-token.pypi ${{ secrets.PYPI_API_TOKEN }}
-      - run: poetry publish
+      - uses: astral-sh/setup-uv@v6
+      - run: uv python install 3.11
+      - run: make
+      - run: make test
+      - run: uv build
+      - run: uv publish --token ${{ secrets.PYPI_API_TOKEN }}
