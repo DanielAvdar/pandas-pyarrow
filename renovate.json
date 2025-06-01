@@ -1,0 +1,64 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "automerge": true,
+  "extends": [
+    "config:recommended"
+  ],
+  "labels": [
+    "renovate"
+  ],
+  "lockFileMaintenance": {
+    "automerge": true,
+    "enabled": true,
+    "groupName": "uv-lock",
+    "schedule": [
+      "at any time"
+    ]
+  },
+  "packageRules": [
+    {
+      "labels": [
+        "github-actions",
+        "renovate"
+      ],
+      "matchManagers": [
+        "github-actions"
+      ]
+    },
+    {
+      "labels": [
+        "pre-commit",
+        "renovate"
+      ],
+      "matchManagers": [
+        "pre-commit"
+      ]
+    },
+    {
+      "automerge": true,
+      "groupName": "all non-major dependencies",
+      "labels": [
+        "renovate",
+        "python"
+      ],
+      "matchManagers": [
+        "pip-requirements",
+        "uv",
+        "setup-cfg",
+        "setup-py",
+        "pep621"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch",
+        "pin",
+        "digest",
+        "lockFileMaintenance"
+      ]
+    }
+  ],
+  "schedule": [
+    "at any time"
+  ],
+  "timezone": "Europe/London"
+}

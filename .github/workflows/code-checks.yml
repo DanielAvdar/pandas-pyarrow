@@ -2,26 +2,27 @@ name: Code Quality
 
 on:
   pull_request:
-    paths:
-      - 'pandas_pyarrow/**'
-      - 'tests/**'
-      - '.github/workflows/code-checks.yml'
-      - '.pre-commit-config.yaml'
-
   workflow_dispatch:
+
 jobs:
-  lint:
-    name: Code Check
+  pre-commit-hooks:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
-      - run: pipx install poetry
-      - uses: actions/setup-python@v5
+      - uses: astral-sh/setup-uv@v6
         with:
-          python-version: '3.11'
-          cache: poetry
-
-      - run: make
+          enable-cache: true
+      - run: uv python install 3.12
       - run: make check
+
+  typecheck:
+    name: Types Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - run: uv python install 3.12
       - run: make mypy

@@ -40,4 +40,4 @@ exclude_patterns = []
 
 html_theme = "sphinx_rtd_theme"
 master_doc = "index"
-html_static_path = ["_static"]
+html_static_path = []
