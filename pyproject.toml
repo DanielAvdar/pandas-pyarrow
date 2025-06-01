@@ -1,14 +1,12 @@
 [project]
 name = "pandas-pyarrow"
-version = "0.0.0"
+dynamic = ["version"]
 description = "A library for switching pandas backend to pyarrow"
-authors = [{ name = "DanielAvdar", email = "66269169+DanielAvdar@users.noreply.github.com" }]
-license = "MIT"
+authors = [
+    { name = "DanielAvdar", email = "66269169+DanielAvdar@users.noreply.github.com" }
+]
+license = { text = "MIT" }
 readme = "README.md"
-homepage = "https://github.com/DanielAvdar/pandas-pyarrow"
-repository = "https://github.com/DanielAvdar/pandas-pyarrow"
-documentation = "https://github.com/DanielAvdar/pandas-pyarrow"
-
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
@@ -38,44 +36,50 @@ keywords = [
     "pandas-pyarrow",
     "pandas-arrow",
 ]
-packages = [{ include = "pandas_pyarrow", from = "." }]
-
-[tool.poetry.dependencies]
-python = ">=3.9,<4"
-pandas = ">=2"
-db-dtypes = { version = ">=1", optional = true }
-pandas-gbq = { version = ">=0.15.0", optional = true }
-pyarrow = ">=10.0.1"
-
-[tool.poetry.extras]
-db-dtypes = ["db-dtypes"]
-bigquery = ["pandas-gbq"]
-
-[tool.poetry.group.dev.dependencies]
-db-dtypes = ">=1"
-pytest = ">=7.1.2"
-hypothesis = ">=6.23.3"
-pre-commit = ">=2.20.0"
-pytest-cov = ">=4.0.0"
-mypy = ">=0.991"
-pytest-parametrization = ">=2022.2.1"
-types-pytz = ">=2024.1.0.20240203"
-pandas-stubs = ">=2.2.1.240316"
-ruff = ">=0.3.1"
-sybil = { version = ">=1.4.0", extras = ["pytest"] }
-
-
-[tool.poetry.group.docs.dependencies]
-#sphinx = ">=7.0.0"
-sphinx = [
-    { version = ">=8.2.0", markers = "python_version >= '3.11'" },
-    { version = ">=7.0.0", markers = "python_version < '3.11'" }
+requires-python = ">=3.9,<4"
+dependencies = [
+    "pandas>=2",
+    "pyarrow>=10.0.1",
 ]
 
-sphinx-rtd-theme = "^3.0.2"
+[project.urls]
+Homepage = "https://github.com/DanielAvdar/pandas-pyarrow"
+Repository = "https://github.com/DanielAvdar/pandas-pyarrow"
+Documentation = "https://github.com/DanielAvdar/pandas-pyarrow"
+
+[tool.hatch.build.targets.sdist]
+only-include = ["pandas_pyarrow"]
+source = "."
+
+[tool.hatch.build.targets.wheel]
+only-include = ["pandas_pyarrow"]
+source = "."
+
+[project.optional-dependencies]
+db-dtypes = ["db-dtypes>=1"]
+all = ["db-dtypes>=1", "pandas-gbq>=0.15.0"]
+bigquery = ["pandas-gbq"]
+
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling", "uv-dynamic-versioning"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "uv-dynamic-versioning"
+
+[dependency-groups]
+dev = [
+    "pytest>=7.1.2",
+    "hypothesis>=6.23.3",
+    "pytest-cov>=4.0.0",
+    "mypy>=0.991",
+    "ruff>=0.3.1",
+]
+docs = [
+    "sphinx>=8.2.0; python_version >= '3.11'",
+    "sphinx>=7.0.0; python_version < '3.11'",
+    "sphinx-rtd-theme>=3.0.2",
+]
 
 [tool.ruff]
 line-length = 120

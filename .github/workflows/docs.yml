@@ -1,8 +1,6 @@
-name: Publish docs
+name: Doc-Test
 on:
   pull_request:
-  release:
-    types: [ published ]
   workflow_dispatch:
 
 permissions:
@@ -17,12 +15,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - run: pipx install poetry
-      - run: poetry check
-      - uses: actions/setup-python@v5
+      - uses: astral-sh/setup-uv@v6
         with:
-          python-version: '3.11'
-          cache: poetry
-
-      - run: make
+          enable-cache: true
+      - run: uv python install 3.12
+      - run: make install-docs
       - run: make doc
