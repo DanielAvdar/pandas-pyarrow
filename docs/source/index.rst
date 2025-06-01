@@ -1,5 +1,5 @@
-.. pandas-pyarrow documentation master file, created by
-sphinx-quickstart
+.. pandas-pyarrow documentation master file, created by sphinx-quickstart
+
 
 pandas-pyarrow Documentation
 ============================
@@ -30,12 +30,14 @@ Welcome to the documentation for **pandas-pyarrow**, a library designed to simpl
 .. image:: https://img.shields.io/github/last-commit/DanielAvdar/pandas-pyarrow/main
    :alt: Last Commit
 
+
 .. toctree::
    :maxdepth: 1
    :caption: Introduction
 
    introduction
    installation
+
 
 .. toctree::
    :maxdepth: 1
