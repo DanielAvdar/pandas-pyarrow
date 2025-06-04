@@ -1,11 +1,10 @@
-# reverse_converter.py
-
 from typing import Dict, List, Optional
 
 from .mappers import reverse_create_mapper
 
 import numpy as np
 import pandas as pd
+import pyarrow as pa
 
 
 class ReversePandasArrowConverter:
@@ -56,6 +55,10 @@ class ReversePandasArrowConverter:
 
         if "bool" in dtype_name:
             return "bool"
+            
+        # Handle nested types
+        if "list[pyarrow]" in dtype_name or "struct[pyarrow]" in dtype_name or "map[pyarrow]" in dtype_name:
+            return "object"
 
         return self._mapper.get(dtype_name, self._default_target_type)
 
