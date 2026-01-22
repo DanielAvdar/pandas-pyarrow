@@ -38,6 +38,19 @@ exclude_patterns = []
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = "sphinx_rtd_theme"
+html_theme = "pydata_sphinx_theme"
 master_doc = "index"
 html_static_path = []
+
+# Theme options
+html_theme_options = {
+    "github_url": "https://github.com/DanielAvdar/pandas-pyarrow",
+    "use_edit_page_button": True,
+}
+
+html_context = {
+    "github_user": "DanielAvdar",
+    "github_repo": "pandas-pyarrow",
+    "github_version": "main",
+    "doc_path": "docs/source",
+}
