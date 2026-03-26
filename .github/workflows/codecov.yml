@@ -20,7 +20,7 @@ jobs:
           enable-cache: true
       - run: uv python install 3.12
       - run: make coverage
-      - uses: codecov/codecov-action@v5
+      - uses: codecov/codecov-action@v6
         with:
           fail_ci_if_error: true
           verbose: true
